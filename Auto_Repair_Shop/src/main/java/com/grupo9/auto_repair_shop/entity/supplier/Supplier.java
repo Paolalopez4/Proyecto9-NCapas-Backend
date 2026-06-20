@@ -4,6 +4,8 @@ import com.grupo9.auto_repair_shop.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "suppliers")
 @Getter
@@ -24,4 +26,7 @@ public class Supplier extends BaseEntity {
 
     @Column(length = 30)
     private String phone;
+
+    @OneToMany(mappedBy = "supplier")
+    private List<SupplierPart> parts;
 }

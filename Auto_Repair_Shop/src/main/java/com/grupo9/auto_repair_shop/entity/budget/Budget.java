@@ -7,6 +7,7 @@ import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -41,4 +42,7 @@ public class Budget {
 
     @Column(name = "responded_at")
     private LocalDateTime respondedAt;
+
+    @OneToMany(mappedBy = "budget")
+    private List<BudgetItem> items;
 }

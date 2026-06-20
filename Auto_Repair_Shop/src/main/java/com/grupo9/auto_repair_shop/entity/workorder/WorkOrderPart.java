@@ -28,12 +28,12 @@ public class WorkOrderPart {
     @JoinColumn(name = "part_id", nullable = false)
     private Part part;
 
-    @Column(nullable = false)
+    @Column(name = "quantity", nullable = false)
     private Integer quantity = 1;
 
     @Column(name = "unit_price", nullable = false, precision = 10, scale = 2)
     private BigDecimal unitPrice;
 
-    @Column(precision = 10, scale = 2)
+    @Column(name = "discount", precision = 10, scale = 2)
     private BigDecimal discount;
 }

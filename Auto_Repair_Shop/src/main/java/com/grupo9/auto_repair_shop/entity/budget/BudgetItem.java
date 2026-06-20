@@ -31,6 +31,7 @@ public class BudgetItem {
     @Column(columnDefinition = "TEXT")
     private String description;
 
+    @Column(name = "quantity")
     private Integer quantity = 1;
 
     @Column(name = "unit_price", precision = 10, scale = 2)

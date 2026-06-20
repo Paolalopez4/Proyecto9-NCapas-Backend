@@ -2,6 +2,7 @@ package com.grupo9.auto_repair_shop.entity.workorder;
 
 import com.grupo9.auto_repair_shop.entity.appointment.Appointment;
 import com.grupo9.auto_repair_shop.entity.branch.Branch;
+import com.grupo9.auto_repair_shop.entity.hourlog.HourLog;
 import com.grupo9.auto_repair_shop.entity.mechanic.Mechanic;
 import com.grupo9.auto_repair_shop.entity.vehicle.Vehicle;
 import com.grupo9.auto_repair_shop.enums.OrderType;
@@ -10,6 +11,8 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -49,7 +52,7 @@ public class WorkOrder {
     @Column(nullable = false, length = 40)
     private WorkOrderStatus status;
 
-    @Column(columnDefinition = "TEXT")
+    @Column(name = "diagnosis", columnDefinition = "TEXT")
     private String diagnosis;
 
     @Column(name = "opened_at", nullable = false)
@@ -57,4 +60,13 @@ public class WorkOrder {
 
     @Column(name = "closed_at")
     private LocalDateTime closedAt;
+
+    @OneToMany(mappedBy = "workOrder")
+    private List<WorkOrderService> services;
+
+    @OneToMany(mappedBy = "workOrder")
+    private List<WorkOrderPart> parts;
+
+    @OneToMany(mappedBy = "workOrder")
+    private List<HourLog> hourLogs;
 }

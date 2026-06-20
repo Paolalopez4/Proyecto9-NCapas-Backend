@@ -2,11 +2,15 @@ package com.grupo9.auto_repair_shop.entity.mechanic;
 
 import com.grupo9.auto_repair_shop.entity.BaseEntity;
 import com.grupo9.auto_repair_shop.entity.branch.Branch;
+import com.grupo9.auto_repair_shop.entity.hourlog.HourLog;
 import com.grupo9.auto_repair_shop.entity.user.User;
+import com.grupo9.auto_repair_shop.entity.workorder.WorkOrder;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "mechanics")
@@ -33,4 +37,10 @@ public class Mechanic extends BaseEntity {
 
     @Column(nullable = false)
     private Boolean active = true;
+
+    @OneToMany(mappedBy = "mechanic")
+    private List<WorkOrder> workOrders;
+
+    @OneToMany(mappedBy = "mechanic")
+    private List<HourLog> hourLogs;
 }

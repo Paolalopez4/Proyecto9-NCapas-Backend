@@ -30,8 +30,9 @@ public class Warranty {
     @Column(name = "end_date")
     private LocalDate endDate;
 
-    @Column(columnDefinition = "TEXT")
+    @Column(name = "coverage", columnDefinition = "TEXT")
     private String coverage;
 
+    @Column(name = "active")
     private Boolean active = true;
 }

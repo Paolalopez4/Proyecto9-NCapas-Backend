@@ -1,9 +1,12 @@
 package com.grupo9.auto_repair_shop.entity.part;
 
+import com.grupo9.auto_repair_shop.entity.inventory.BranchInventory;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -33,4 +36,7 @@ public class Part {
 
     @Column(nullable = false)
     private Boolean active = true;
+
+    @OneToMany(mappedBy = "part")
+    private List<BranchInventory> inventory;
 }

@@ -1,8 +1,12 @@
 package com.grupo9.auto_repair_shop.entity.branch;
 
 import com.grupo9.auto_repair_shop.entity.BaseEntity;
+import com.grupo9.auto_repair_shop.entity.inventory.BranchInventory;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "branches")
@@ -24,4 +28,7 @@ public class Branch extends BaseEntity {
 
     @Column(nullable = false)
     private Boolean active = true;
+
+    @OneToMany(mappedBy = "branch")
+    private List<BranchInventory> inventory;
 }

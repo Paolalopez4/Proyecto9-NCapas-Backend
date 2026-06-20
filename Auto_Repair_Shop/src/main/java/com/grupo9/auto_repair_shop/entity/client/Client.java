@@ -2,8 +2,12 @@ package com.grupo9.auto_repair_shop.entity.client;
 
 import com.grupo9.auto_repair_shop.entity.BaseEntity;
 import com.grupo9.auto_repair_shop.entity.user.User;
+import com.grupo9.auto_repair_shop.entity.vehicle.Vehicle;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "clients")
@@ -23,4 +27,8 @@ public class Client extends BaseEntity {
 
     @Column(length = 255)
     private String address;
+
+    @OneToMany(mappedBy = "client")
+    private List<Vehicle> vehicles;
+
 }
