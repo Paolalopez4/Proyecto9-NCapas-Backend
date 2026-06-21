@@ -12,7 +12,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class UserRequest {
+public class UpdateUserRequest {
 
     @NotBlank(message = "El nombre es obligatorio")
     @Size(max = 150, message = "El nombre no puede superar los 150 caracteres")
@@ -23,7 +23,6 @@ public class UserRequest {
     @Size(max = 150, message = "El email no puede superar los 150 caracteres")
     private String email;
 
-    @NotBlank(message = "La contraseña es obligatoria")
     @Size(min = 8, max = 255, message = "La contraseña debe tener entre 8 y 255 caracteres")
     private String password;
 
