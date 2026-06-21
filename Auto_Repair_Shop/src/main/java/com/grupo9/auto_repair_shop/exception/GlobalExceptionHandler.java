@@ -3,18 +3,22 @@ package com.grupo9.auto_repair_shop.exception;
 import com.grupo9.auto_repair_shop.dto.response.common.ErrorResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.ConstraintViolationException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authorization.AuthorizationDeniedException;
-import org.springframework.validation.FieldError;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
@@ -24,11 +28,11 @@ public class GlobalExceptionHandler {
             ResourceNotFoundException ex,
             HttpServletRequest request
     ) {
-
-        return buildResponse(
+        return buildError(
                 HttpStatus.NOT_FOUND,
                 ex.getMessage(),
-                request.getRequestURI()
+                request.getRequestURI(),
+                null
         );
     }
 
@@ -37,11 +41,11 @@ public class GlobalExceptionHandler {
             ConflictException ex,
             HttpServletRequest request
     ) {
-
-        return buildResponse(
+        return buildError(
                 HttpStatus.CONFLICT,
                 ex.getMessage(),
-                request.getRequestURI()
+                request.getRequestURI(),
+                null
         );
     }
 
@@ -50,11 +54,24 @@ public class GlobalExceptionHandler {
             BusinessRuleException ex,
             HttpServletRequest request
     ) {
+        return buildError(
+                HttpStatus.UNPROCESSABLE_ENTITY,
+                ex.getMessage(),
+                request.getRequestURI(),
+                null
+        );
+    }
 
-        return buildResponse(
+    @ExceptionHandler(ValidationException.class)
+    public ResponseEntity<ErrorResponse> handleValidationException(
+            ValidationException ex,
+            HttpServletRequest request
+    ) {
+        return buildError(
                 HttpStatus.BAD_REQUEST,
                 ex.getMessage(),
-                request.getRequestURI()
+                request.getRequestURI(),
+                null
         );
     }
 
@@ -63,24 +80,11 @@ public class GlobalExceptionHandler {
             UnauthorizedException ex,
             HttpServletRequest request
     ) {
-
-        return buildResponse(
+        return buildError(
                 HttpStatus.UNAUTHORIZED,
                 ex.getMessage(),
-                request.getRequestURI()
-        );
-    }
-
-    @ExceptionHandler(ForbiddenException.class)
-    public ResponseEntity<ErrorResponse> handleForbidden(
-            ForbiddenException ex,
-            HttpServletRequest request
-    ) {
-
-        return buildResponse(
-                HttpStatus.FORBIDDEN,
-                ex.getMessage(),
-                request.getRequestURI()
+                request.getRequestURI(),
+                null
         );
     }
 
@@ -89,54 +93,70 @@ public class GlobalExceptionHandler {
             BadCredentialsException ex,
             HttpServletRequest request
     ) {
-
-        return buildResponse(
+        return buildError(
                 HttpStatus.UNAUTHORIZED,
                 "Credenciales inválidas",
-                request.getRequestURI()
+                request.getRequestURI(),
+                null
+        );
+    }
+
+    @ExceptionHandler(ForbiddenException.class)
+    public ResponseEntity<ErrorResponse> handleForbidden(
+            ForbiddenException ex,
+            HttpServletRequest request
+    ) {
+        return buildError(
+                HttpStatus.FORBIDDEN,
+                ex.getMessage(),
+                request.getRequestURI(),
+                null
         );
     }
 
     @ExceptionHandler(AuthorizationDeniedException.class)
-    public ResponseEntity<ErrorResponse> handleAccessDenied(
+    public ResponseEntity<ErrorResponse> handleAuthorizationDenied(
             AuthorizationDeniedException ex,
             HttpServletRequest request
     ) {
-
-        return buildResponse(
+        return buildError(
                 HttpStatus.FORBIDDEN,
-                "Acceso denegado",
-                request.getRequestURI()
+                "No tienes permisos para acceder a este recurso",
+                request.getRequestURI(),
+                null
+        );
+    }
+
+    @ExceptionHandler(AccessDeniedException.class)
+    public ResponseEntity<ErrorResponse> handleAccessDenied(
+            AccessDeniedException ex,
+            HttpServletRequest request
+    ) {
+        return buildError(
+                HttpStatus.FORBIDDEN,
+                "No tienes permisos para acceder a este recurso",
+                request.getRequestURI(),
+                null
         );
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<ErrorResponse> handleValidation(
+    public ResponseEntity<ErrorResponse> handleMethodArgumentNotValid(
             MethodArgumentNotValidException ex,
             HttpServletRequest request
     ) {
+        Map<String, String> fieldErrors = new HashMap<>();
 
-        Map<String, String> errors = ex.getBindingResult()
-                .getFieldErrors()
-                .stream()
-                .collect(Collectors.toMap(
-                        FieldError::getField,
-                        field -> field.getDefaultMessage() != null
-                                ? field.getDefaultMessage()
-                                : "Valor inválido",
-                        (first, second) -> first
-                ));
+        ex.getBindingResult().getFieldErrors().forEach(error ->
+                fieldErrors.put(error.getField(), error.getDefaultMessage())
+        );
 
-        ErrorResponse response = ErrorResponse.builder()
-                .timestamp(LocalDateTime.now())
-                .status(HttpStatus.BAD_REQUEST.value())
-                .error(HttpStatus.BAD_REQUEST.getReasonPhrase())
-                .message("Error de validación")
-                .path(request.getRequestURI())
-                .fieldErrors(errors)
-                .build();
-
-        return ResponseEntity.badRequest().body(response);
+        return buildError(
+                HttpStatus.BAD_REQUEST,
+                "Error de validación",
+                request.getRequestURI(),
+                fieldErrors
+        );
     }
 
     @ExceptionHandler(ConstraintViolationException.class)
@@ -144,11 +164,65 @@ public class GlobalExceptionHandler {
             ConstraintViolationException ex,
             HttpServletRequest request
     ) {
-
-        return buildResponse(
+        return buildError(
                 HttpStatus.BAD_REQUEST,
                 ex.getMessage(),
-                request.getRequestURI()
+                request.getRequestURI(),
+                null
+        );
+    }
+
+    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
+    public ResponseEntity<ErrorResponse> handleTypeMismatch(
+            MethodArgumentTypeMismatchException ex,
+            HttpServletRequest request
+    ) {
+        String message = "El parámetro '" + ex.getName() + "' tiene un formato inválido";
+
+        return buildError(
+                HttpStatus.BAD_REQUEST,
+                message,
+                request.getRequestURI(),
+                null
+        );
+    }
+
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    public ResponseEntity<ErrorResponse> handleNotReadable(
+            HttpMessageNotReadableException ex,
+            HttpServletRequest request
+    ) {
+        return buildError(
+                HttpStatus.BAD_REQUEST,
+                "El cuerpo de la petición es inválido o está mal formado",
+                request.getRequestURI(),
+                null
+        );
+    }
+
+    @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
+    public ResponseEntity<ErrorResponse> handleMethodNotSupported(
+            HttpRequestMethodNotSupportedException ex,
+            HttpServletRequest request
+    ) {
+        return buildError(
+                HttpStatus.METHOD_NOT_ALLOWED,
+                "Método HTTP no permitido para esta ruta",
+                request.getRequestURI(),
+                null
+        );
+    }
+
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public ResponseEntity<ErrorResponse> handleDataIntegrityViolation(
+            DataIntegrityViolationException ex,
+            HttpServletRequest request
+    ) {
+        return buildError(
+                HttpStatus.CONFLICT,
+                "No se pudo completar la operación porque viola una restricción de la base de datos",
+                request.getRequestURI(),
+                null
         );
     }
 
@@ -157,28 +231,31 @@ public class GlobalExceptionHandler {
             Exception ex,
             HttpServletRequest request
     ) {
+        ex.printStackTrace();
 
-        return buildResponse(
+        return buildError(
                 HttpStatus.INTERNAL_SERVER_ERROR,
-                "Ha ocurrido un error interno",
-                request.getRequestURI()
+                "Error interno del servidor",
+                request.getRequestURI(),
+                null
         );
     }
 
-    private ResponseEntity<ErrorResponse> buildResponse(
+    private ResponseEntity<ErrorResponse> buildError(
             HttpStatus status,
             String message,
-            String path
+            String path,
+            Map<String, String> fieldErrors
     ) {
-
-        ErrorResponse response = ErrorResponse.builder()
-                .timestamp(LocalDateTime.now())
+        ErrorResponse errorResponse = ErrorResponse.builder()
                 .status(status.value())
                 .error(status.getReasonPhrase())
                 .message(message)
                 .path(path)
+                .timestamp(LocalDateTime.now())
+                .fieldErrors(fieldErrors)
                 .build();
 
-        return ResponseEntity.status(status).body(response);
+        return ResponseEntity.status(status).body(errorResponse);
     }
 }
