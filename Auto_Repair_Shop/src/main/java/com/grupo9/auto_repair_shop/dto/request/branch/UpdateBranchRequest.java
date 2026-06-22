@@ -10,7 +10,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class BranchRequest {
+public class UpdateBranchRequest {
 
     @NotBlank(message = "El nombre de la sucursal es obligatorio")
     @Size(max = 150, message = "El nombre no puede superar los 150 caracteres")
