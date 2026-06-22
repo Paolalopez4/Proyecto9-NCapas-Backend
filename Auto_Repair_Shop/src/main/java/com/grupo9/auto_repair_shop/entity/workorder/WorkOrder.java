@@ -2,16 +2,18 @@ package com.grupo9.auto_repair_shop.entity.workorder;
 
 import com.grupo9.auto_repair_shop.entity.appointment.Appointment;
 import com.grupo9.auto_repair_shop.entity.branch.Branch;
+import com.grupo9.auto_repair_shop.entity.budget.Budget;
 import com.grupo9.auto_repair_shop.entity.hourlog.HourLog;
+import com.grupo9.auto_repair_shop.entity.invoice.Invoice;
 import com.grupo9.auto_repair_shop.entity.mechanic.Mechanic;
 import com.grupo9.auto_repair_shop.entity.vehicle.Vehicle;
+import com.grupo9.auto_repair_shop.entity.warranty.Warranty;
 import com.grupo9.auto_repair_shop.enums.OrderType;
 import com.grupo9.auto_repair_shop.enums.WorkOrderStatus;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -69,4 +71,22 @@ public class WorkOrder {
 
     @OneToMany(mappedBy = "workOrder")
     private List<HourLog> hourLogs;
+
+    @OneToOne(mappedBy = "workOrder")
+    private Budget budget;
+
+    @OneToOne(mappedBy = "workOrder")
+    private Invoice invoice;
+
+    @OneToOne(mappedBy = "workOrder")
+    private Warranty warranty;
 }
+
+
+
+
+
+
+
+
+
