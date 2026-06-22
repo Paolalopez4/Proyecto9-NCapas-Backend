@@ -4,6 +4,7 @@ import com.grupo9.auto_repair_shop.entity.branch.Branch;
 import com.grupo9.auto_repair_shop.entity.client.Client;
 import com.grupo9.auto_repair_shop.entity.mechanic.Mechanic;
 import com.grupo9.auto_repair_shop.entity.vehicle.Vehicle;
+import com.grupo9.auto_repair_shop.entity.workorder.WorkOrder;
 import com.grupo9.auto_repair_shop.enums.AppointmentStatus;
 import jakarta.persistence.*;
 import lombok.*;
@@ -53,4 +54,7 @@ public class Appointment {
 
     @OneToMany(mappedBy = "appointment", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<AppointmentService> services;
+
+    @OneToOne(mappedBy = "appointment")
+    private WorkOrder workOrder;
 }
