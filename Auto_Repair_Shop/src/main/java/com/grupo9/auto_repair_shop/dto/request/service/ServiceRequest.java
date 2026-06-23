@@ -2,9 +2,15 @@ package com.grupo9.auto_repair_shop.dto.request.service;
 
 import jakarta.persistence.Column;
 import jakarta.validation.constraints.*;
+import lombok.*;
 
 import java.math.BigDecimal;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class ServiceRequest {
     @NotBlank(message = "Name is required")
     @Size(max = 150, message = "Name must be at most 150 characters")
