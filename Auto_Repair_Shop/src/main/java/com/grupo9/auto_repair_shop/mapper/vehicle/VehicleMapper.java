@@ -1,7 +1,6 @@
 package com.grupo9.auto_repair_shop.mapper.vehicle;
 
 import com.grupo9.auto_repair_shop.dto.request.vehicle.UpdateVehicleRequest;
-import com.grupo9.auto_repair_shop.dto.request.vehicle.VehicleRequest;
 import com.grupo9.auto_repair_shop.dto.response.vehicle.VehicleResponse;
 import com.grupo9.auto_repair_shop.entity.vehicle.Vehicle;
 import org.mapstruct.Mapper;

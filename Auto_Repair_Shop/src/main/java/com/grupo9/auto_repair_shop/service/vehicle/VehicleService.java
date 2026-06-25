@@ -4,7 +4,6 @@ import com.grupo9.auto_repair_shop.dto.request.vehicle.UpdateVehicleRequest;
 import com.grupo9.auto_repair_shop.dto.request.vehicle.VehicleRequest;
 import com.grupo9.auto_repair_shop.dto.response.common.PageResponse;
 import com.grupo9.auto_repair_shop.dto.response.vehicle.VehicleResponse;
-import org.springframework.jdbc.object.UpdatableSqlQuery;
 
 import java.util.UUID;
 

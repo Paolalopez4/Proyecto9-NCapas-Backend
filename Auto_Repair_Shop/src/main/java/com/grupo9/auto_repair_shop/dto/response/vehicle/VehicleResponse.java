@@ -23,4 +23,5 @@ public class VehicleResponse {
     private LocalDateTime createdAt;
 
     private UUID clientId;
-    private String clientName;}
+    private String clientName;
+}
