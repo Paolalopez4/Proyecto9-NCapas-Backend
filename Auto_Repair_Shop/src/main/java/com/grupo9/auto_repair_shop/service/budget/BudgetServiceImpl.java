@@ -18,6 +18,7 @@ import com.grupo9.auto_repair_shop.mapper.budget.BudgetMapper;
 import com.grupo9.auto_repair_shop.repository.budget.BudgetItemRepository;
 import com.grupo9.auto_repair_shop.repository.budget.BudgetRepository;
 import com.grupo9.auto_repair_shop.repository.workorder.WorkOrderRepository;
+import com.grupo9.auto_repair_shop.service.notification.NotificationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -37,6 +38,7 @@ public class BudgetServiceImpl implements BudgetService {
     private final WorkOrderRepository workOrderRepository;
     private final BudgetMapper budgetMapper;
     private final BudgetItemMapper budgetItemMapper;
+    private final NotificationService notificationService;
 
     @Override
     public BudgetResponse create(UUID workOrderId, BudgetRequest request) {
@@ -115,6 +117,19 @@ public class BudgetServiceImpl implements BudgetService {
         budget.setSentAt(LocalDateTime.now());
 
         Budget updated = budgetRepository.save(budget);
+
+        UUID clientUserId = budget.getWorkOrder()
+                .getVehicle()
+                .getClient()
+                .getUser()
+                .getId();
+
+        notificationService.createAutomatic(
+                clientUserId,
+                "Presupuesto disponible",
+                "Tu presupuesto para la orden de trabajo está listo para revisión.",
+                budget.getWorkOrder().getId()
+        );
 
         return budgetMapper.toResponse(updated);
     }
@@ -229,7 +244,8 @@ public class BudgetServiceImpl implements BudgetService {
         item.setUnitPrice(request.getUnitPrice());
         item.setDiscount(request.getDiscount());
 
-        BudgetItem updated = budgetItemRepository.save(item);
+        BudgetItem updated = budgetItemMapper.toResponse(item) != null
+                ? budgetItemRepository.save(item) : item;
 
         recalculateTotal(budget);
         budgetRepository.save(budget);
