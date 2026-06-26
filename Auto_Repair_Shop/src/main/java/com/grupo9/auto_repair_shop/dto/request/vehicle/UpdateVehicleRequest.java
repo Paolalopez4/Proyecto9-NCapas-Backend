@@ -3,17 +3,12 @@ package com.grupo9.auto_repair_shop.dto.request.vehicle;
 import jakarta.validation.constraints.*;
 import lombok.*;
 
-import java.util.UUID;
-
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class VehicleRequest {
-
-    @NotNull(message = "Client ID is required")
-    private UUID clientId;
+public class UpdateVehicleRequest {
 
     @NotBlank(message = "Plate is required")
     @Size(max = 50, message = "Plate must be at most 50 characters")

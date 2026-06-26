@@ -35,6 +35,7 @@ public class Part {
     private BigDecimal unitPrice;
 
     @Column(nullable = false)
+    @Builder.Default
     private Boolean active = true;
 
     @OneToMany(mappedBy = "part")
