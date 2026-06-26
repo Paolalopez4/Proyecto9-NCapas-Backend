@@ -32,6 +32,7 @@ import com.grupo9.auto_repair_shop.repository.warranty.WarrantyRepository;
 import com.grupo9.auto_repair_shop.repository.workorder.WorkOrderPartRepository;
 import com.grupo9.auto_repair_shop.repository.workorder.WorkOrderRepository;
 import com.grupo9.auto_repair_shop.repository.workorder.WorkOrderServiceRepository;
+import com.grupo9.auto_repair_shop.service.notification.NotificationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -57,6 +58,7 @@ public class WorkOrderServiceImpl implements WorkOrderService {
     private final RepairHistoryRepository repairHistoryRepository;
     private final WarrantyRepository warrantyRepository;
     private final WorkOrderMapper workOrderMapper;
+    private final NotificationService notificationService;
 
     //GET paginado con filtros opcionales
     @Override
@@ -236,6 +238,15 @@ public class WorkOrderServiceImpl implements WorkOrderService {
                     .build();
             repairHistoryRepository.save(repairHistory);
         }
+
+        // Notificación automática al cliente
+        notificationService.createAutomatic(
+                saved.getVehicle().getClient().getUser().getId(),
+                "Tu vehículo está listo",
+                "Tu orden de trabajo ha sido completada y está lista para retirar.",
+                saved.getId()
+        );
+
         return workOrderMapper.toResponse(saved);
     }
 
