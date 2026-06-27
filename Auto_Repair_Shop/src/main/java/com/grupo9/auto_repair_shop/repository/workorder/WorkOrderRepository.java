@@ -10,6 +10,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
 
@@ -38,4 +39,23 @@ public interface WorkOrderRepository extends JpaRepository<WorkOrder, UUID> {
             "AND wo.warranty IS NOT NULL AND wo.warranty.active = true " +
             "AND wo.warranty.endDate >= CURRENT_DATE")
     List<WorkOrder> findActiveWarrantiesByVehicleId(@Param("vehicleId") UUID vehicleId);
+
+    //mostrar eficiencia en mechanics
+    long countByMechanicIdAndStatus(UUID mechanicId, WorkOrderStatus status);
+
+    @Query("""
+        SELECT COALESCE(SUM(wos.unitPrice * wos.quantity), 0)
+        FROM WorkOrderService wos
+        WHERE wos.workOrder.mechanic.id = :mechanicId
+        AND wos.workOrder.status = 'COMPLETED'
+    """)
+    BigDecimal sumServiceRevenueByMechanicId(@Param("mechanicId") UUID mechanicId);
+
+    @Query("""
+        SELECT COALESCE(SUM(wop.unitPrice * wop.quantity), 0)
+        FROM WorkOrderPart wop
+        WHERE wop.workOrder.mechanic.id = :mechanicId
+        AND wop.workOrder.status = 'COMPLETED'
+    """)
+    BigDecimal sumPartRevenueByMechanicId(@Param("mechanicId") UUID mechanicId);
 }
