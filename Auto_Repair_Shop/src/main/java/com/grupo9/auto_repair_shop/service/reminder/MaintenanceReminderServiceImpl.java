@@ -1,6 +1,7 @@
 package com.grupo9.auto_repair_shop.service.reminder;
 
 import com.grupo9.auto_repair_shop.dto.request.reminder.MaintenanceReminderRequest;
+import com.grupo9.auto_repair_shop.dto.request.reminder.MaintenanceReminderUpdateRequest;
 import com.grupo9.auto_repair_shop.dto.response.common.PageResponse;
 import com.grupo9.auto_repair_shop.dto.response.reminder.MaintenanceReminderResponse;
 import com.grupo9.auto_repair_shop.entity.client.Client;
@@ -19,6 +20,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
 @Service
@@ -37,6 +39,10 @@ public class MaintenanceReminderServiceImpl implements MaintenanceReminderServic
         if (request.getDueDate() == null && request.getDueMileage() == null) {
             throw new BusinessRuleException(
                     "Reminder must have at least a due date or a due mileage");
+        }
+
+        if (request.getDueDate() != null && !request.getDueDate().isAfter(LocalDate.now())) {
+            throw new BusinessRuleException("Due date must be a future date");
         }
 
         Vehicle vehicle = vehicleRepository.findById(request.getVehicleId())
@@ -89,13 +95,13 @@ public class MaintenanceReminderServiceImpl implements MaintenanceReminderServic
             result = reminderRepository.findAll(pageable);
         }
 
-        Page<MaintenanceReminderResponse> mapped = result.map(MaintenanceReminderMapper:toResponse);
+        Page<MaintenanceReminderResponse> mapped = result.map(reminderMapper::toResponse);
         return PageResponse.from(mapped);
     }
 
     @Override
     @Transactional
-    public MaintenanceReminderResponse update(UUID id, MaintenanceReminderRequest request) {
+    public MaintenanceReminderResponse update(UUID id, MaintenanceReminderUpdateRequest request) {
 
         MaintenanceReminder reminder = reminderRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(
@@ -104,6 +110,10 @@ public class MaintenanceReminderServiceImpl implements MaintenanceReminderServic
         if (request.getDueDate() == null && request.getDueMileage() == null) {
             throw new BusinessRuleException(
                     "Reminder must have at least a due date or a due mileage");
+        }
+
+        if (request.getDueDate() != null && !request.getDueDate().isAfter(LocalDate.now())) {
+            throw new BusinessRuleException("Due date must be a future date");
         }
 
         reminderMapper.updateEntity(request, reminder);
@@ -141,5 +151,15 @@ public class MaintenanceReminderServiceImpl implements MaintenanceReminderServic
 
         MaintenanceReminder updated = reminderRepository.save(reminder);
         return reminderMapper.toResponse(updated);
+    }
+
+    @Override
+    @Transactional
+    public void delete(UUID id) {
+        MaintenanceReminder reminder = reminderRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        "Maintenance reminder not found with id: " + id));
+
+        reminderRepository.delete(reminder);
     }
 }
