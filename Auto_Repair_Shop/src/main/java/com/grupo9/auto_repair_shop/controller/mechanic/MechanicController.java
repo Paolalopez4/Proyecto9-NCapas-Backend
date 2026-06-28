@@ -1,8 +1,10 @@
 package com.grupo9.auto_repair_shop.controller.mechanic;
 
 import com.grupo9.auto_repair_shop.dto.request.mechanic.MechanicRequest;
+import com.grupo9.auto_repair_shop.dto.request.mechanic.UpdateMechanicRequest;
 import com.grupo9.auto_repair_shop.dto.response.common.ApiResponse;
 import com.grupo9.auto_repair_shop.dto.response.common.PageResponse;
+import com.grupo9.auto_repair_shop.dto.response.mechanic.MechanicEfficiencyResponse;
 import com.grupo9.auto_repair_shop.dto.response.mechanic.MechanicResponse;
 import com.grupo9.auto_repair_shop.service.mechanic.MechanicService;
 import jakarta.validation.Valid;
@@ -13,6 +15,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -38,6 +41,24 @@ public class MechanicController {
                     .build();
 
             return ResponseEntity.status(HttpStatus.CREATED).body(body);
+        }
+
+        @PreAuthorize("hasRole('ADMIN')")
+        @GetMapping("/report/efficiency")
+        public ResponseEntity<ApiResponse<List<MechanicEfficiencyResponse>>> getEfficiencyReport(
+                @RequestParam(required = false) UUID branchId,
+                @RequestParam(required = false) Boolean active) {
+
+            List<MechanicEfficiencyResponse> report = mechanicService.getEfficiencyReport(branchId, active);
+
+            ApiResponse<List<MechanicEfficiencyResponse>> body = ApiResponse.<List<MechanicEfficiencyResponse>>builder()
+                    .success(true)
+                    .message("Efficiency report retrieved successfully.")
+                    .data(report)
+                    .timestamp(LocalDateTime.now())
+                    .build();
+
+            return ResponseEntity.ok(body);
         }
 
         @PreAuthorize("isAuthenticated()")
@@ -82,17 +103,15 @@ public class MechanicController {
         @PutMapping("/{id}")
         public ResponseEntity<ApiResponse<MechanicResponse>> update(
                 @PathVariable UUID id,
-                @Valid @RequestBody MechanicRequest request) {
+                @Valid @RequestBody UpdateMechanicRequest request) {
 
             MechanicResponse updated = mechanicService.update(id, request);
 
             ApiResponse<MechanicResponse> body = ApiResponse.<MechanicResponse>builder()
                     .success(true)
-                    .message("Mechanic updated successfully.")
-                    .data(updated)
+                    .message("Mechanic updated successfully.").data(updated)
                     .timestamp(LocalDateTime.now())
                     .build();
-
             return ResponseEntity.ok(body);
         }
 

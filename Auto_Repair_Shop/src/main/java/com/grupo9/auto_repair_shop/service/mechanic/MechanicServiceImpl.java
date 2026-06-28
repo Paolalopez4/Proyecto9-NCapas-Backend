@@ -1,6 +1,7 @@
 package com.grupo9.auto_repair_shop.service.mechanic;
 
 import com.grupo9.auto_repair_shop.dto.request.mechanic.MechanicRequest;
+import com.grupo9.auto_repair_shop.dto.request.mechanic.UpdateMechanicRequest;
 import com.grupo9.auto_repair_shop.dto.response.common.PageResponse;
 import com.grupo9.auto_repair_shop.dto.response.mechanic.MechanicEfficiencyResponse;
 import com.grupo9.auto_repair_shop.dto.response.mechanic.MechanicResponse;
@@ -14,8 +15,10 @@ import com.grupo9.auto_repair_shop.exception.ConflictException;
 import com.grupo9.auto_repair_shop.exception.ResourceNotFoundException;
 import com.grupo9.auto_repair_shop.mapper.mechanic.MechanicMapper;
 import com.grupo9.auto_repair_shop.repository.branch.BranchRepository;
+import com.grupo9.auto_repair_shop.repository.hourlog.HourLogRepository;
 import com.grupo9.auto_repair_shop.repository.mechanic.MechanicRepository;
 import com.grupo9.auto_repair_shop.repository.user.UserRepository;
+import com.grupo9.auto_repair_shop.repository.workorder.WorkOrderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -37,6 +40,8 @@ public class MechanicServiceImpl implements MechanicService {
     private final UserRepository userRepository;
     private final BranchRepository branchRepository;
     private final MechanicMapper mechanicMapper;
+    private final HourLogRepository hourLogRepository;
+    private final WorkOrderRepository workOrderRepository;
 
     @Override
     @Transactional
@@ -108,7 +113,7 @@ public class MechanicServiceImpl implements MechanicService {
 
     @Override
     @Transactional
-    public MechanicResponse update(UUID id, MechanicRequest request) {
+    public MechanicResponse update(UUID id, UpdateMechanicRequest request) {
 
         Mechanic mechanic = mechanicRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(
@@ -126,7 +131,7 @@ public class MechanicServiceImpl implements MechanicService {
             mechanic.setBranch(newBranch);
         }
 
-        mechanicMapper.updateEntity(request, mechanic);
+        mechanicMapper.updateFromRequest(request, mechanic);
 
         Mechanic updated = mechanicRepository.save(mechanic);
         return mechanicMapper.toResponse(updated);
@@ -158,6 +163,47 @@ public class MechanicServiceImpl implements MechanicService {
 
     @Override
     public List<MechanicEfficiencyResponse> getEfficiencyReport(UUID branchId, Boolean active) {
-        throw new UnsupportedOperationException("Efficiency report generation is not implemented yet.");
+
+        List<Mechanic> mechanics;
+
+        if (branchId != null) {
+            mechanics = mechanicRepository.findByBranchId(branchId);
+        } else if (active != null) {
+            mechanics = mechanicRepository.findByActive(active);
+        } else {
+            mechanics = mechanicRepository.findAll();
+        }
+
+        return mechanics.stream()
+                .map(this::buildEfficiencyResponse)
+                .toList();
+    }
+
+    private MechanicEfficiencyResponse buildEfficiencyResponse(Mechanic mechanic) {
+
+        BigDecimal totalHours = hourLogRepository.sumHoursByMechanicId(mechanic.getId());
+        long completedOrders = workOrderRepository.countByMechanicIdAndStatus(mechanic.getId(), WorkOrderStatus.DONE);
+
+        BigDecimal serviceRevenue = workOrderRepository.sumServiceRevenueByMechanicId(mechanic.getId());
+        BigDecimal partRevenue = workOrderRepository.sumPartRevenueByMechanicId(mechanic.getId());
+        BigDecimal totalRevenue = serviceRevenue.add(partRevenue);
+
+        BigDecimal laborCost = mechanic.getHourlyRate().multiply(totalHours);
+
+        BigDecimal revenuePerHour = totalHours.compareTo(BigDecimal.ZERO) > 0
+                ? totalRevenue.divide(totalHours, 2, RoundingMode.HALF_UP)
+                : BigDecimal.ZERO;
+
+        return MechanicEfficiencyResponse.builder()
+                .mechanicId(mechanic.getId())
+                .mechanicName(mechanic.getUser().getName())
+                .specialty(mechanic.getSpecialty())
+                .hourlyRate(mechanic.getHourlyRate())
+                .totalHoursWorked(totalHours)
+                .completedOrders(completedOrders)
+                .totalRevenue(totalRevenue)
+                .laborCost(laborCost)
+                .revenuePerHour(revenuePerHour)
+                .build();
     }
 }

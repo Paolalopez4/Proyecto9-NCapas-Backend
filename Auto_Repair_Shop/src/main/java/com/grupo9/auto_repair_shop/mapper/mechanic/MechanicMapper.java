@@ -1,6 +1,7 @@
 package com.grupo9.auto_repair_shop.mapper.mechanic;
 
 import com.grupo9.auto_repair_shop.dto.request.mechanic.MechanicRequest;
+import com.grupo9.auto_repair_shop.dto.request.mechanic.UpdateMechanicRequest;
 import com.grupo9.auto_repair_shop.dto.response.mechanic.MechanicResponse;
 import com.grupo9.auto_repair_shop.entity.mechanic.Mechanic;
 import org.mapstruct.Mapper;
@@ -17,8 +18,6 @@ public interface MechanicMapper {
     @Mapping(target = "branchName", source = "branch.name")
     MechanicResponse toResponse(Mechanic mechanic);
 
-    @Mapping(target = "specialty", source = "request.specialty")
-    @Mapping(target = "hourlyRate", source = "request.hourlyRate")
-    void updateEntity(MechanicRequest request, @MappingTarget Mechanic mechanic);
+    void updateFromRequest(UpdateMechanicRequest request, @MappingTarget Mechanic mechanic);
 
 }
