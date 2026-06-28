@@ -47,7 +47,7 @@ public interface WorkOrderRepository extends JpaRepository<WorkOrder, UUID> {
         SELECT COALESCE(SUM(wos.unitPrice * wos.quantity), 0)
         FROM WorkOrderService wos
         WHERE wos.workOrder.mechanic.id = :mechanicId
-        AND wos.workOrder.status = 'COMPLETED'
+        AND wos.workOrder.status = 'DONE'
     """)
     BigDecimal sumServiceRevenueByMechanicId(@Param("mechanicId") UUID mechanicId);
 
@@ -55,7 +55,7 @@ public interface WorkOrderRepository extends JpaRepository<WorkOrder, UUID> {
         SELECT COALESCE(SUM(wop.unitPrice * wop.quantity), 0)
         FROM WorkOrderPart wop
         WHERE wop.workOrder.mechanic.id = :mechanicId
-        AND wop.workOrder.status = 'COMPLETED'
+        AND wop.workOrder.status = 'DONE'
     """)
     BigDecimal sumPartRevenueByMechanicId(@Param("mechanicId") UUID mechanicId);
 }
