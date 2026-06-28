@@ -36,7 +36,7 @@ public class BudgetController {
         return ResponseEntity.status(HttpStatus.CREATED).body(
                 ApiResponse.<BudgetResponse>builder()
                         .success(true)
-                        .message("Presupuesto creado correctamente")
+                        .message("Budget created successfully")
                         .data(budget)
                         .timestamp(LocalDateTime.now())
                         .build()
@@ -53,7 +53,7 @@ public class BudgetController {
         return ResponseEntity.ok(
                 ApiResponse.<BudgetResponse>builder()
                         .success(true)
-                        .message("Presupuesto obtenido correctamente")
+                        .message("Budget retrieved successfully")
                         .data(budget)
                         .timestamp(LocalDateTime.now())
                         .build()
@@ -71,7 +71,7 @@ public class BudgetController {
         return ResponseEntity.ok(
                 ApiResponse.<BudgetResponse>builder()
                         .success(true)
-                        .message("Presupuesto actualizado correctamente")
+                        .message("Budget updated successfully")
                         .data(budget)
                         .timestamp(LocalDateTime.now())
                         .build()
@@ -88,7 +88,7 @@ public class BudgetController {
         return ResponseEntity.ok(
                 ApiResponse.<BudgetResponse>builder()
                         .success(true)
-                        .message("Presupuesto enviado al cliente correctamente")
+                        .message("Budget sent to client successfully")
                         .data(budget)
                         .timestamp(LocalDateTime.now())
                         .build()
@@ -106,7 +106,7 @@ public class BudgetController {
         return ResponseEntity.ok(
                 ApiResponse.<BudgetResponse>builder()
                         .success(true)
-                        .message("Presupuesto aprobado correctamente")
+                        .message("Budget approved successfully")
                         .data(budget)
                         .timestamp(LocalDateTime.now())
                         .build()
@@ -124,7 +124,7 @@ public class BudgetController {
         return ResponseEntity.ok(
                 ApiResponse.<BudgetResponse>builder()
                         .success(true)
-                        .message("Presupuesto rechazado correctamente")
+                        .message("Budget rejected successfully")
                         .data(budget)
                         .timestamp(LocalDateTime.now())
                         .build()
@@ -142,7 +142,7 @@ public class BudgetController {
         return ResponseEntity.status(HttpStatus.CREATED).body(
                 ApiResponse.<BudgetItemResponse>builder()
                         .success(true)
-                        .message("Ítem agregado al presupuesto correctamente")
+                        .message("Item added to budget successfully")
                         .data(item)
                         .timestamp(LocalDateTime.now())
                         .build()
@@ -161,7 +161,7 @@ public class BudgetController {
         return ResponseEntity.ok(
                 ApiResponse.<BudgetItemResponse>builder()
                         .success(true)
-                        .message("Ítem actualizado correctamente")
+                        .message("Item updated successfully")
                         .data(item)
                         .timestamp(LocalDateTime.now())
                         .build()
@@ -179,7 +179,7 @@ public class BudgetController {
         return ResponseEntity.ok(
                 ApiResponse.<Void>builder()
                         .success(true)
-                        .message("Ítem eliminado del presupuesto correctamente")
+                        .message("Item removed from budget successfully")
                         .data(null)
                         .timestamp(LocalDateTime.now())
                         .build()

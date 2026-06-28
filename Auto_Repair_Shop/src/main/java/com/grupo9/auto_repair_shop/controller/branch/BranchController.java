@@ -33,7 +33,7 @@ public class BranchController {
 
         ApiResponse<BranchResponse> response = ApiResponse.<BranchResponse>builder()
                 .success(true)
-                .message("Sucursal creada correctamente")
+                .message("Branch created successfully")
                 .data(branch)
                 .timestamp(LocalDateTime.now())
                 .build();
@@ -52,7 +52,7 @@ public class BranchController {
 
         ApiResponse<PageResponse<BranchResponse>> response = ApiResponse.<PageResponse<BranchResponse>>builder()
                 .success(true)
-                .message("Sucursales obtenidas correctamente")
+                .message("Branches retrieved successfully")
                 .data(branches)
                 .timestamp(LocalDateTime.now())
                 .build();
@@ -69,7 +69,7 @@ public class BranchController {
 
         ApiResponse<BranchResponse> response = ApiResponse.<BranchResponse>builder()
                 .success(true)
-                .message("Sucursal obtenida correctamente")
+                .message("Branch retrieved successfully")
                 .data(branch)
                 .timestamp(LocalDateTime.now())
                 .build();
@@ -87,7 +87,7 @@ public class BranchController {
 
         ApiResponse<BranchResponse> response = ApiResponse.<BranchResponse>builder()
                 .success(true)
-                .message("Sucursal actualizada correctamente")
+                .message("Branch updated successfully")
                 .data(branch)
                 .timestamp(LocalDateTime.now())
                 .build();
@@ -105,7 +105,7 @@ public class BranchController {
 
         ApiResponse<BranchResponse> response = ApiResponse.<BranchResponse>builder()
                 .success(true)
-                .message("Estado de la sucursal actualizado correctamente")
+                .message("Branch status updated successfully")
                 .data(branch)
                 .timestamp(LocalDateTime.now())
                 .build();
@@ -122,7 +122,7 @@ public class BranchController {
 
         ApiResponse<Void> response = ApiResponse.<Void>builder()
                 .success(true)
-                .message("Sucursal eliminada correctamente")
+                .message("Branch deleted successfully")
                 .data(null)
                 .timestamp(LocalDateTime.now())
                 .build();

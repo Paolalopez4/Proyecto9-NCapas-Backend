@@ -34,15 +34,15 @@ public class BranchServiceImpl implements BranchService {
     public BranchResponse create(BranchRequest request) {
 
         if (branchRepository.existsByName(request.getName())) {
-            throw new ConflictException("Ya existe una sucursal con ese nombre");
+            throw new ConflictException("Branch with same name already exists");
         }
 
         if (branchRepository.existsByAddress(request.getAddress())) {
-            throw new ConflictException("Ya existe una sucursal con esa dirección");
+            throw new ConflictException("Branch with same address already exists");
         }
 
         if (branchRepository.existsByPhone(request.getPhone())) {
-            throw new ConflictException("Ya existe una sucursal con ese teléfono");
+            throw new ConflictException("Branch with same phone number already exists");
         }
 
         Branch branch = Branch.builder()
@@ -62,11 +62,11 @@ public class BranchServiceImpl implements BranchService {
     public PageResponse<BranchResponse> findAll(Boolean active, int page, int size) {
 
         if (page < 0) {
-            throw new ValidationException("La página no puede ser menor que cero");
+            throw new ValidationException("Page cannot be lower than 0");
         }
 
         if (size < 1 || size > 100) {
-            throw new ValidationException("El tamaño de página debe estar entre 1 y 100");
+            throw new ValidationException("Page size has to be between 1 and 100");
         }
 
         PageRequest pageRequest = PageRequest.of(
@@ -93,7 +93,7 @@ public class BranchServiceImpl implements BranchService {
     public BranchResponse findById(UUID id) {
         Branch branch = branchRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(
-                        "Sucursal no encontrada con id: " + id
+                        "Cannot find Branch with id: " + id
                 ));
 
         return branchMapper.toResponse(branch);
@@ -104,19 +104,19 @@ public class BranchServiceImpl implements BranchService {
     public BranchResponse update(UUID id, UpdateBranchRequest request) {
         Branch branch = branchRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(
-                        "Sucursal no encontrada con id: " + id
+                        "Cannot find Branch with id: " + id
                 ));
 
         if (branchRepository.existsByNameAndIdNot(request.getName(), id)) {
-            throw new ConflictException("Ya existe otra sucursal con ese nombre");
+            throw new ConflictException("Branch with same name already exists");
         }
 
         if (branchRepository.existsByAddressAndIdNot(request.getAddress(), id)) {
-            throw new ConflictException("Ya existe otra sucursal con esa dirección");
+            throw new ConflictException("Branch with same address already exists");
         }
 
         if (branchRepository.existsByPhoneAndIdNot(request.getPhone(), id)) {
-            throw new ConflictException("Ya existe otra sucursal con ese teléfono");
+            throw new ConflictException("Branch with same phone number already exists");
         }
 
         branch.setName(request.getName());
@@ -132,7 +132,7 @@ public class BranchServiceImpl implements BranchService {
     public BranchResponse updateActive(UUID id, Boolean active) {
         Branch branch = branchRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(
-                        "Sucursal no encontrada con id: " + id
+                        "Cannot find Branch with id: " + id
                 ));
 
         branch.setActive(active);
@@ -146,7 +146,7 @@ public class BranchServiceImpl implements BranchService {
     public void delete(UUID id) {
         Branch branch = branchRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(
-                        "Sucursal no encontrada con id: " + id
+                        "Cannot find Branch with id: " + id
                 ));
 
         try {
@@ -154,7 +154,7 @@ public class BranchServiceImpl implements BranchService {
             branchRepository.flush();
         } catch (DataIntegrityViolationException ex) {
             throw new BusinessRuleException(
-                    "No se puede eliminar la sucursal porque tiene información relacionada"
+                    "Cannot delete branch because of related data"
             );
         }
     }

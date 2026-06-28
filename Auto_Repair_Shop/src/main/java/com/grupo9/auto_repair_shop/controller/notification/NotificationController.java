@@ -34,7 +34,7 @@ public class NotificationController {
         return ResponseEntity.status(HttpStatus.CREATED).body(
                 ApiResponse.<NotificationResponse>builder()
                         .success(true)
-                        .message("Notificación enviada correctamente")
+                        .message("Notification sent successfully")
                         .data(notification)
                         .timestamp(LocalDateTime.now())
                         .build()
@@ -52,7 +52,7 @@ public class NotificationController {
         return ResponseEntity.ok(
                 ApiResponse.<PageResponse<NotificationResponse>>builder()
                         .success(true)
-                        .message("Notificaciones obtenidas correctamente")
+                        .message("Notifications retrieved successfully")
                         .data(notifications)
                         .timestamp(LocalDateTime.now())
                         .build()
@@ -72,7 +72,7 @@ public class NotificationController {
         return ResponseEntity.ok(
                 ApiResponse.<PageResponse<NotificationResponse>>builder()
                         .success(true)
-                        .message("Tus notificaciones obtenidas correctamente")
+                        .message("Your notifications retrieved successfully")
                         .data(notifications)
                         .timestamp(LocalDateTime.now())
                         .build()
@@ -89,7 +89,7 @@ public class NotificationController {
         return ResponseEntity.ok(
                 ApiResponse.<NotificationResponse>builder()
                         .success(true)
-                        .message("Notificación obtenida correctamente")
+                        .message("Notification retrieved successfully")
                         .data(notification)
                         .timestamp(LocalDateTime.now())
                         .build()
@@ -108,7 +108,7 @@ public class NotificationController {
         return ResponseEntity.ok(
                 ApiResponse.<NotificationResponse>builder()
                         .success(true)
-                        .message("Notificación marcada como leída")
+                        .message("Notification marked as read")
                         .data(notification)
                         .timestamp(LocalDateTime.now())
                         .build()
@@ -125,7 +125,7 @@ public class NotificationController {
         return ResponseEntity.ok(
                 ApiResponse.<Void>builder()
                         .success(true)
-                        .message("Todas las notificaciones marcadas como leídas")
+                        .message("All notifications marked as read")
                         .data(null)
                         .timestamp(LocalDateTime.now())
                         .build()

@@ -1,17 +1,16 @@
 package com.grupo9.auto_repair_shop.security;
 
+import com.grupo9.auto_repair_shop.entity.user.User;
+import com.grupo9.auto_repair_shop.repository.user.UserRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
-
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
-
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -24,6 +23,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     private final JwtService jwtService;
     private final UserDetailsServiceImpl userDetailsService;
+    private final UserRepository userRepository;
 
     @Override
     protected void doFilterInternal(
@@ -34,9 +34,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         String header = request.getHeader("Authorization");
 
-        if (!StringUtils.hasText(header)
-                || !header.startsWith("Bearer ")) {
-
+        if (!StringUtils.hasText(header) || !header.startsWith("Bearer ")) {
             filterChain.doFilter(request, response);
             return;
         }
@@ -44,7 +42,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         String token = header.substring(7);
 
         if (!jwtService.isValid(token)) {
+            filterChain.doFilter(request, response);
+            return;
+        }
 
+        if (!jwtService.isAccessToken(token)) {
             filterChain.doFilter(request, response);
             return;
         }
@@ -52,6 +54,29 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         String email = jwtService.extractEmail(token);
 
         if (SecurityContextHolder.getContext().getAuthentication() != null) {
+            filterChain.doFilter(request, response);
+            return;
+        }
+
+        User user = userRepository.findByEmail(email)
+                .orElse(null);
+
+        if (user == null) {
+            filterChain.doFilter(request, response);
+            return;
+        }
+
+        if (!Boolean.TRUE.equals(user.getActive())) {
+            filterChain.doFilter(request, response);
+            return;
+        }
+
+        Long tokenVersion = jwtService.extractTokenVersion(token);
+        Long userTokenVersion = user.getTokenVersion() == null
+                ? 0L
+                : user.getTokenVersion();
+
+        if (tokenVersion == null || !userTokenVersion.equals(tokenVersion)) {
             filterChain.doFilter(request, response);
             return;
         }
@@ -67,12 +92,10 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 );
 
         authentication.setDetails(
-                new WebAuthenticationDetailsSource()
-                        .buildDetails(request)
+                new WebAuthenticationDetailsSource().buildDetails(request)
         );
 
-        SecurityContextHolder.getContext()
-                .setAuthentication(authentication);
+        SecurityContextHolder.getContext().setAuthentication(authentication);
 
         filterChain.doFilter(request, response);
     }

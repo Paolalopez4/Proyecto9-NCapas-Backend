@@ -33,7 +33,7 @@ public class ClientController {
         return ResponseEntity.status(HttpStatus.CREATED).body(
                 ApiResponse.<ClientResponse>builder()
                         .success(true)
-                        .message("Cliente creado correctamente")
+                        .message("Client created successfully")
                         .data(created)
                         .timestamp(LocalDateTime.now())
                         .build()
@@ -50,7 +50,7 @@ public class ClientController {
         return ResponseEntity.ok(
                 ApiResponse.<ClientResponse>builder()
                         .success(true)
-                        .message("Cliente obtenido correctamente")
+                        .message("Client retrieved successfully")
                         .data(found)
                         .timestamp(LocalDateTime.now())
                         .build()
@@ -68,7 +68,7 @@ public class ClientController {
         return ResponseEntity.ok(
                 ApiResponse.<PageResponse<ClientResponse>>builder()
                         .success(true)
-                        .message("Clientes obtenidos correctamente")
+                        .message("Clients retrieved successfully")
                         .data(result)
                         .timestamp(LocalDateTime.now())
                         .build()
@@ -86,7 +86,7 @@ public class ClientController {
         return ResponseEntity.ok(
                 ApiResponse.<ClientResponse>builder()
                         .success(true)
-                        .message("Cliente actualizado correctamente")
+                        .message("Client updated successfully")
                         .data(updated)
                         .timestamp(LocalDateTime.now())
                         .build()
@@ -103,7 +103,7 @@ public class ClientController {
         return ResponseEntity.ok(
                 ApiResponse.<Void>builder()
                         .success(true)
-                        .message("Cliente eliminado correctamente")
+                        .message("Client deleted successfully")
                         .data(null)
                         .timestamp(LocalDateTime.now())
                         .build()
