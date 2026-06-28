@@ -2,6 +2,7 @@ package com.grupo9.auto_repair_shop.controller.auth;
 
 import com.grupo9.auto_repair_shop.dto.request.auth.ChangePasswordRequest;
 import com.grupo9.auto_repair_shop.dto.request.auth.LoginRequest;
+import com.grupo9.auto_repair_shop.dto.request.auth.RefreshTokenRequest;
 import com.grupo9.auto_repair_shop.dto.request.auth.RegisterRequest;
 import com.grupo9.auto_repair_shop.dto.response.auth.AuthUserResponse;
 import com.grupo9.auto_repair_shop.dto.response.auth.LoginResponse;
@@ -30,7 +31,7 @@ public class AuthController {
 
         ApiResponse<AuthUserResponse> response = ApiResponse.<AuthUserResponse>builder()
                 .success(true)
-                .message("Usuario registrado correctamente")
+                .message("User registered successfully")
                 .data(user)
                 .timestamp(LocalDateTime.now())
                 .build();
@@ -46,7 +47,7 @@ public class AuthController {
 
         ApiResponse<LoginResponse> response = ApiResponse.<LoginResponse>builder()
                 .success(true)
-                .message("Inicio de sesión correcto")
+                .message("Login successful")
                 .data(loginResponse)
                 .timestamp(LocalDateTime.now())
                 .build();
@@ -58,16 +59,15 @@ public class AuthController {
     public ResponseEntity<ApiResponse<Void>> logout() {
         authService.logout();
 
-        ApiResponse<Void> response = ApiResponse.<Void>builder()
-                .success(true)
-                .message("Sesión cerrada correctamente")
-                .data(null)
-                .timestamp(LocalDateTime.now())
-                .build();
-
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok(
+                ApiResponse.<Void>builder()
+                        .success(true)
+                        .message("Logout successfully.")
+                        .data(null)
+                        .timestamp(LocalDateTime.now())
+                        .build()
+        );
     }
-
     @PatchMapping("/change-password")
     public ResponseEntity<ApiResponse<AuthUserResponse>> changePassword(
             @Valid @RequestBody ChangePasswordRequest request
@@ -76,11 +76,27 @@ public class AuthController {
 
         ApiResponse<AuthUserResponse> response = ApiResponse.<AuthUserResponse>builder()
                 .success(true)
-                .message("Contraseña actualizada correctamente")
+                .message("Password updated successfully")
                 .data(user)
                 .timestamp(LocalDateTime.now())
                 .build();
 
         return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("/refresh")
+    public ResponseEntity<ApiResponse<LoginResponse>> refresh(
+            @Valid @RequestBody RefreshTokenRequest request
+    ) {
+        LoginResponse response = authService.refresh(request);
+
+        return ResponseEntity.ok(
+                ApiResponse.<LoginResponse>builder()
+                        .success(true)
+                        .message("Token refreshed successfully.")
+                        .data(response)
+                        .timestamp(LocalDateTime.now())
+                        .build()
+        );
     }
 }

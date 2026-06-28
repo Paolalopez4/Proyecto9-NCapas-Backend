@@ -29,4 +29,8 @@ public class User extends BaseEntity {
 
     @Column(nullable = false)
     private Boolean active = true;
+
+    @Column(name = "token_version")
+    @Builder.Default
+    private Long tokenVersion = 0L;
 }

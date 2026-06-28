@@ -4,7 +4,32 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8763f010-f80e-4402-abdd-fe087b0928ee" name="Changes" comment="" />
+    <list default="true" id="8763f010-f80e-4402-abdd-fe087b0928ee" name="Changes" comment="Merge pull request #25 from Paolalopez4/fix/workorder&#10;&#10;chore: clean extra .idea x2">
+      <changelist_data name="Paolalopez4" email="128640196+paolalopez4@users.noreply.github.com" automatic="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/controller/auth/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/controller/auth/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/controller/branch/BranchController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/controller/branch/BranchController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/controller/budget/BudgetController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/controller/budget/BudgetController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/controller/client/ClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/controller/client/ClientController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/controller/hourlog/HourLogController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/controller/hourlog/HourLogController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/controller/invoice/InvoiceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/controller/invoice/InvoiceController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/controller/notification/NotificationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/controller/notification/NotificationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/controller/user/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/controller/user/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/controller/warranty/WarrantyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/controller/warranty/WarrantyController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/dto/request/auth/RefreshTokenRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/dto/request/auth/RefreshTokenRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/dto/response/auth/LoginResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/dto/response/auth/LoginResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/entity/user/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/entity/user/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/security/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/security/JwtAuthenticationFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/security/JwtService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/security/JwtService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/security/UserDetailsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/security/UserDetailsServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/service/auth/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/service/auth/AuthService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/service/auth/AuthServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/service/auth/AuthServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/service/branch/BranchServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/service/branch/BranchServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/service/budget/BudgetServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/service/budget/BudgetServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/service/client/ClientServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/service/client/ClientServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/service/user/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/service/user/UserServiceImpl.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -36,9 +61,17 @@
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
+        <task path="$PROJECT_DIR$/Auto_Repair_Shop">
+          <activation />
+        </task>
         <projects_view>
           <tree_state>
-            <expand />
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Auto_Repair_Shop" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
             <select />
           </tree_state>
         </projects_view>
@@ -46,8 +79,30 @@
     </system>
   </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="Paolalopez4 &lt;128640196+paolalopez4@users.noreply.github.com&gt;" />
+      </list>
+    </option>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="traducciones" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;HenryMauricio2004&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Paolalopez4/Proyecto9-NCapas-Backend.git&quot;,
+    &quot;accountId&quot;: &quot;b25fac40-3dc2-4a1e-aafc-160592996bb2&quot;
+  }
+}</component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
       <entry key="MS100" value="1.0000000000002403" />
@@ -107,24 +162,32 @@
       <entry key="W1" value="1.9999948346450918" />
     </decayedShown>
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 4
-}]]></component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 4
+}</component>
   <component name="ProjectId" id="3FkXzJV7mN4Fh5OjuOUPIWURYa3" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Gradle.Build Auto_Repair_Shop.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "Spring Boot.AutoRepairShopApplication.executor": "Run",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "fix/workorder",
+    "git-widget-placeholder": "feat/jwt-update",
     "junie.onboarding.icon.badge.shown": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/lopez/OneDrive/Documents/UCA/ciclo01-2026/ncapas/proyecto/repo/Proyecto9-NCapas-Backend",
@@ -139,6 +202,14 @@
 }]]></component>
   <component name="RunManager">
     <configuration name="AutoRepairShopApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <envs>
+        <env name="DB_PASSWORD" value="Uvv877aqCD" />
+        <env name="DB_URL" value="jdbc:postgresql://localhost:5432/taller" />
+        <env name="DB_USERNAME" value="postgres" />
+        <env name="JWT_EXPIRATION_MS" value="3600000" />
+        <env name="JWT_REFRESH_EXPIRATION_MS" value="604800000" />
+        <env name="JWT_SECRET" value="clave_super_secreta_para_jwt_de_al_menos_32_chars" />
+      </envs>
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
       <module name="Auto_Repair_Shop.main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.grupo9.auto_repair_shop.AutoRepairShopApplication" />
@@ -168,6 +239,22 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Mensajes traducidos a ingles" />
+    <MESSAGE value="Merge pull request #25 from Paolalopez4/fix/workorder&#10;&#10;chore: clean extra .idea x2" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge pull request #25 from Paolalopez4/fix/workorder&#10;&#10;chore: clean extra .idea x2" />
   </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>

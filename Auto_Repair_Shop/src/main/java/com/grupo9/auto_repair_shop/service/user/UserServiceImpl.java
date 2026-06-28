@@ -40,7 +40,7 @@ public class UserServiceImpl implements UserService {
     public UserResponse create(UserRequest request) {
 
         if (userRepository.existsByEmail(request.getEmail())) {
-            throw new ConflictException("Ya existe un usuario con ese email");
+            throw new ConflictException("A user with that email already exists");
         }
 
         User user = User.builder()
@@ -61,11 +61,11 @@ public class UserServiceImpl implements UserService {
     public PageResponse<UserResponse> findAll(UserRole role, int page, int size) {
 
         if (page < 0) {
-            throw new ValidationException("La página no puede ser menor que cero");
+            throw new ValidationException("Page cannot be less than zero");
         }
 
         if (size < 1 || size > 100) {
-            throw new ValidationException("El tamaño de página debe estar entre 1 y 100");
+            throw new ValidationException("Page size must be between 1 and 100");
         }
 
         PageRequest pageRequest = PageRequest.of(
@@ -92,7 +92,7 @@ public class UserServiceImpl implements UserService {
     public UserResponse findById(UUID id) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(
-                        "Usuario no encontrado con id: " + id
+                        "User not found with id: " + id
                 ));
 
         return userMapper.toResponse(user);
@@ -102,11 +102,11 @@ public class UserServiceImpl implements UserService {
     public UserResponse update(UUID id, UpdateUserRequest request) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(
-                        "Usuario no encontrado con id: " + id
+                        "User not found with id: " + id
                 ));
 
         if (userRepository.existsByEmailAndIdNot(request.getEmail(), id)) {
-            throw new ConflictException("Ya existe otro usuario con ese email");
+            throw new ConflictException("Another user with that email already exists");
         }
 
         user.setName(request.getName());
@@ -126,7 +126,7 @@ public class UserServiceImpl implements UserService {
     public UserResponse updateActive(UUID id, Boolean active) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(
-                        "Usuario no encontrado con id: " + id
+                        "User not found with id: " + id
                 ));
 
         user.setActive(active);
@@ -140,7 +140,7 @@ public class UserServiceImpl implements UserService {
     public void delete(UUID id) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(
-                        "Usuario no encontrado con id: " + id
+                        "User not found with id: " + id
                 ));
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -149,7 +149,7 @@ public class UserServiceImpl implements UserService {
             String currentUserEmail = authentication.getName();
 
             if (user.getEmail().equals(currentUserEmail)) {
-                throw new BusinessRuleException("No puedes eliminar tu propio usuario");
+                throw new BusinessRuleException("You cannot delete your own user");
             }
         }
 
@@ -157,7 +157,7 @@ public class UserServiceImpl implements UserService {
             long activeAdmins = userRepository.countByRoleAndActive(UserRole.ADMIN, true);
 
             if (activeAdmins <= 1 && Boolean.TRUE.equals(user.getActive())) {
-                throw new BusinessRuleException("No se puede eliminar el último administrador activo");
+                throw new BusinessRuleException("The last active administrator cannot be deleted");
             }
         }
 
@@ -166,7 +166,7 @@ public class UserServiceImpl implements UserService {
             userRepository.flush();
         } catch (DataIntegrityViolationException ex) {
             throw new BusinessRuleException(
-                    "No se puede eliminar el usuario porque tiene información relacionada"
+                    "The user cannot be deleted because it has related information"
             );
         }
     }

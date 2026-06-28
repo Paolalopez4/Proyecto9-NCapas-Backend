@@ -45,18 +45,18 @@ public class BudgetServiceImpl implements BudgetService {
 
         WorkOrder workOrder = workOrderRepository.findById(workOrderId)
                 .orElseThrow(() -> new ResourceNotFoundException(
-                        "Orden de trabajo no encontrada con id: " + workOrderId
+                        "Cannot find Work Order with id: " + workOrderId
                 ));
 
         if (workOrder.getStatus() != WorkOrderStatus.IN_PROGRESS) {
             throw new ConflictException(
-                    "Solo se puede crear un presupuesto si la orden está en estado IN_PROGRESS"
+                    "Budget can only be replaced if the order is IN_PROGRESS"
             );
         }
 
         if (budgetRepository.existsByWorkOrderId(workOrderId)) {
             throw new ConflictException(
-                    "Esta orden de trabajo ya tiene un presupuesto asociado"
+                    "Work Order already has a budget"
             );
         }
 
@@ -78,7 +78,7 @@ public class BudgetServiceImpl implements BudgetService {
 
         Budget budget = budgetRepository.findByWorkOrderId(workOrderId)
                 .orElseThrow(() -> new ResourceNotFoundException(
-                        "Presupuesto no encontrado para la orden: " + workOrderId
+                        "Cannot find a budget for the order: " + workOrderId
                 ));
 
         return budgetMapper.toResponse(budget);
@@ -89,7 +89,7 @@ public class BudgetServiceImpl implements BudgetService {
 
         Budget budget = budgetRepository.findByWorkOrderId(workOrderId)
                 .orElseThrow(() -> new ResourceNotFoundException(
-                        "Presupuesto no encontrado para la orden: " + workOrderId
+                        "Cannot find a budget for the order: " + workOrderId
                 ));
 
         budget.setTaxRate(request.getTaxRate());
@@ -105,12 +105,12 @@ public class BudgetServiceImpl implements BudgetService {
 
         Budget budget = budgetRepository.findByWorkOrderId(workOrderId)
                 .orElseThrow(() -> new ResourceNotFoundException(
-                        "Presupuesto no encontrado para la orden: " + workOrderId
+                        "Cannot find a budget for the order: " + workOrderId
                 ));
 
         if (budget.getItems() == null || budget.getItems().isEmpty()) {
             throw new BusinessRuleException(
-                    "El presupuesto debe tener al menos un ítem antes de enviarse"
+                    "Budget requires at least 1 item before sending"
             );
         }
 
@@ -126,8 +126,8 @@ public class BudgetServiceImpl implements BudgetService {
 
         notificationService.createAutomatic(
                 clientUserId,
-                "Presupuesto disponible",
-                "Tu presupuesto para la orden de trabajo está listo para revisión.",
+                "Available Budget",
+                "Work Order Budget ready to check",
                 budget.getWorkOrder().getId()
         );
 
@@ -139,14 +139,14 @@ public class BudgetServiceImpl implements BudgetService {
 
         Budget budget = budgetRepository.findByWorkOrderId(workOrderId)
                 .orElseThrow(() -> new ResourceNotFoundException(
-                        "Presupuesto no encontrado para la orden: " + workOrderId
+                        "Cannot find a budget for the order: " + workOrderId
                 ));
 
         validateClientOwnership(budget, clientEmail);
 
         if (budget.getStatus() != BudgetStatus.PENDING) {
             throw new ConflictException(
-                    "Solo se puede aprobar un presupuesto en estado PENDING"
+                    "Budget can only be approved in PENDING state"
             );
         }
 
@@ -163,14 +163,14 @@ public class BudgetServiceImpl implements BudgetService {
 
         Budget budget = budgetRepository.findByWorkOrderId(workOrderId)
                 .orElseThrow(() -> new ResourceNotFoundException(
-                        "Presupuesto no encontrado para la orden: " + workOrderId
+                        "Cannot find a budget for the order: " + workOrderId
                 ));
 
         validateClientOwnership(budget, clientEmail);
 
         if (budget.getStatus() != BudgetStatus.PENDING) {
             throw new ConflictException(
-                    "Solo se puede rechazar un presupuesto en estado PENDING"
+                    "Budget can only be declined in PENDING state"
             );
         }
 
@@ -187,12 +187,12 @@ public class BudgetServiceImpl implements BudgetService {
 
         Budget budget = budgetRepository.findByWorkOrderId(workOrderId)
                 .orElseThrow(() -> new ResourceNotFoundException(
-                        "Presupuesto no encontrado para la orden: " + workOrderId
+                        "Cannot find a budget for the order: " + workOrderId
                 ));
 
         if (budget.getSentAt() != null) {
             throw new BusinessRuleException(
-                    "No se pueden modificar ítems de un presupuesto ya enviado"
+                    "Items from an already sent budget cannot be modified"
             );
         }
 
@@ -218,23 +218,23 @@ public class BudgetServiceImpl implements BudgetService {
 
         Budget budget = budgetRepository.findByWorkOrderId(workOrderId)
                 .orElseThrow(() -> new ResourceNotFoundException(
-                        "Presupuesto no encontrado para la orden: " + workOrderId
+                        "Cannot find a budget for the order: " + workOrderId
                 ));
 
         if (budget.getSentAt() != null) {
             throw new BusinessRuleException(
-                    "No se pueden modificar ítems de un presupuesto ya enviado"
+                    "Items from an already sent budget cannot be modified"
             );
         }
 
         BudgetItem item = budgetItemRepository.findById(itemId)
                 .orElseThrow(() -> new ResourceNotFoundException(
-                        "Ítem no encontrado con id: " + itemId
+                        "Item not found with id: " + itemId
                 ));
 
         if (!item.getBudget().getId().equals(budget.getId())) {
             throw new ResourceNotFoundException(
-                    "El ítem no pertenece al presupuesto indicado"
+                    "The item does not belong to the specified budget"
             );
         }
 
@@ -258,23 +258,23 @@ public class BudgetServiceImpl implements BudgetService {
 
         Budget budget = budgetRepository.findByWorkOrderId(workOrderId)
                 .orElseThrow(() -> new ResourceNotFoundException(
-                        "Presupuesto no encontrado para la orden: " + workOrderId
+                        "Cannot find a budget for the order: " + workOrderId
                 ));
 
         if (budget.getSentAt() != null) {
             throw new BusinessRuleException(
-                    "No se pueden modificar ítems de un presupuesto ya enviado"
+                    "Items from an already sent budget cannot be modified"
             );
         }
 
         BudgetItem item = budgetItemRepository.findById(itemId)
                 .orElseThrow(() -> new ResourceNotFoundException(
-                        "Ítem no encontrado con id: " + itemId
+                        "Item not found with id: " + itemId
                 ));
 
         if (!item.getBudget().getId().equals(budget.getId())) {
             throw new ResourceNotFoundException(
-                    "El ítem no pertenece al presupuesto indicado"
+                    "The item does not belong to the specified budget"
             );
         }
 
@@ -293,7 +293,7 @@ public class BudgetServiceImpl implements BudgetService {
 
         if (!ownerEmail.equals(clientEmail)) {
             throw new ForbiddenException(
-                    "Solo el cliente dueño del vehículo puede aprobar o rechazar el presupuesto"
+                    "Only the client who owns the vehicle can approve or reject the budget"
             );
         }
     }

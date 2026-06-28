@@ -37,18 +37,18 @@ public class ClientServiceImpl implements ClientService {
 
         User user = userRepository.findById(request.getUserId())
                 .orElseThrow(() -> new ResourceNotFoundException(
-                        "Usuario no encontrado con id: " + request.getUserId()
+                        "User not found with id: " + request.getUserId()
                 ));
 
         if (!user.getActive()) {
             throw new ResourceNotFoundException(
-                    "El usuario debe estar activo para crear un perfil de cliente"
+                    "The user must be active to create a client profile"
             );
         }
 
         if (clientRepository.existsByUserId(request.getUserId())) {
             throw new ConflictException(
-                    "Ya existe un perfil de cliente para este usuario"
+                    "A client profile already exists for this user"
             );
         }
 
@@ -63,7 +63,7 @@ public class ClientServiceImpl implements ClientService {
     public ClientResponse findById(UUID id) {
         Client client = clientRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(
-                        "Cliente no encontrado con id: " + id
+                        "Client not found with id: " + id
                 ));
         return clientMapper.toResponse(client);
     }
@@ -83,7 +83,7 @@ public class ClientServiceImpl implements ClientService {
     public ClientResponse update(UUID id, UpdateClientRequest request) {
         Client client = clientRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(
-                        "Cliente no encontrado con id: " + id
+                        "Client not found with id: " + id
                 ));
 
         client.setPhone(request.getPhone());
@@ -98,7 +98,7 @@ public class ClientServiceImpl implements ClientService {
     public void delete(UUID id) {
         Client client = clientRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(
-                        "Cliente no encontrado con id: " + id
+                        "Client not found with id: " + id
                 ));
 
         try {
@@ -106,7 +106,7 @@ public class ClientServiceImpl implements ClientService {
             clientRepository.flush();
         } catch (DataIntegrityViolationException ex) {
             throw new BusinessRuleException(
-                    "No se puede eliminar el cliente porque tiene información relacionada"
+                    "The client cannot be deleted because it has related information"
             );
         }
     }

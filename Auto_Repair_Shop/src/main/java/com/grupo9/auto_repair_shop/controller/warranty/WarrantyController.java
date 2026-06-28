@@ -29,7 +29,7 @@ public class WarrantyController {
         return ResponseEntity.ok(
                 ApiResponse.<PageResponse<WarrantyResponse>>builder()
                         .success(true)
-                        .message("Garantías obtenidas correctamente")
+                        .message("Warranties retrieved successfully")
                         .data(warranties)
                         .timestamp(LocalDateTime.now())
                         .build()
@@ -46,7 +46,7 @@ public class WarrantyController {
         return ResponseEntity.ok(
                 ApiResponse.<WarrantyResponse>builder()
                         .success(true)
-                        .message("Garantía obtenida correctamente")
+                        .message("Warranty retrieved successfully")
                         .data(warranty)
                         .timestamp(LocalDateTime.now())
                         .build()
@@ -63,7 +63,7 @@ public class WarrantyController {
         return ResponseEntity.ok(
                 ApiResponse.<WarrantyResponse>builder()
                         .success(true)
-                        .message("Garantía obtenida correctamente")
+                        .message("Warranty retrieved successfully")
                         .data(warranty)
                         .timestamp(LocalDateTime.now())
                         .build()
@@ -82,7 +82,7 @@ public class WarrantyController {
         return ResponseEntity.ok(
                 ApiResponse.<PageResponse<WarrantyResponse>>builder()
                         .success(true)
-                        .message("Garantías del cliente obtenidas correctamente")
+                        .message("Client warranties retrieved successfully")
                         .data(warranties)
                         .timestamp(LocalDateTime.now())
                         .build()
@@ -99,7 +99,7 @@ public class WarrantyController {
         return ResponseEntity.ok(
                 ApiResponse.<WarrantyResponse>builder()
                         .success(true)
-                        .message("Garantía desactivada correctamente")
+                        .message("Warranty deactivated successfully")
                         .data(warranty)
                         .timestamp(LocalDateTime.now())
                         .build()

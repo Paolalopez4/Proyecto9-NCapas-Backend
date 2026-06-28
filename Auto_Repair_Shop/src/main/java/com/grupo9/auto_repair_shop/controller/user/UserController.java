@@ -34,7 +34,7 @@ public class UserController {
 
         ApiResponse<UserResponse> response = ApiResponse.<UserResponse>builder()
                 .success(true)
-                .message("Usuario creado correctamente")
+                .message("User created successfully")
                 .data(user)
                 .timestamp(LocalDateTime.now())
                 .build();
@@ -53,7 +53,7 @@ public class UserController {
 
         ApiResponse<PageResponse<UserResponse>> response = ApiResponse.<PageResponse<UserResponse>>builder()
                 .success(true)
-                .message("Usuarios obtenidos correctamente")
+                .message("Users retrieved successfully")
                 .data(users)
                 .timestamp(LocalDateTime.now())
                 .build();
@@ -70,7 +70,7 @@ public class UserController {
 
         ApiResponse<UserResponse> response = ApiResponse.<UserResponse>builder()
                 .success(true)
-                .message("Usuario obtenido correctamente")
+                .message("User retrieved successfully")
                 .data(user)
                 .timestamp(LocalDateTime.now())
                 .build();
@@ -88,7 +88,7 @@ public class UserController {
 
         ApiResponse<UserResponse> response = ApiResponse.<UserResponse>builder()
                 .success(true)
-                .message("Usuario actualizado correctamente")
+                .message("User updated successfully")
                 .data(user)
                 .timestamp(LocalDateTime.now())
                 .build();
@@ -106,7 +106,7 @@ public class UserController {
 
         ApiResponse<UserResponse> response = ApiResponse.<UserResponse>builder()
                 .success(true)
-                .message("Estado del usuario actualizado correctamente")
+                .message("User status updated successfully")
                 .data(user)
                 .timestamp(LocalDateTime.now())
                 .build();
@@ -123,7 +123,7 @@ public class UserController {
 
         ApiResponse<Void> response = ApiResponse.<Void>builder()
                 .success(true)
-                .message("Usuario eliminado correctamente")
+                .message("User deleted successfully")
                 .data(null)
                 .timestamp(LocalDateTime.now())
                 .build();

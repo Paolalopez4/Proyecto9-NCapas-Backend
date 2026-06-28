@@ -37,7 +37,7 @@ public class HourLogController {
 
         ApiResponse<HourLogResponse> response = ApiResponse.<HourLogResponse>builder()
                 .success(true)
-                .message("Registro de horas creado correctamente")
+                .message("Hour log created successfully")
                 .data(hourLog)
                 .timestamp(LocalDateTime.now())
                 .build();
@@ -56,7 +56,7 @@ public class HourLogController {
 
         ApiResponse<PageResponse<HourLogResponse>> response = ApiResponse.<PageResponse<HourLogResponse>>builder()
                 .success(true)
-                .message("Registros de horas obtenidos correctamente")
+                .message("Hour logs retrieved successfully")
                 .data(hourLogs)
                 .timestamp(LocalDateTime.now())
                 .build();
@@ -74,7 +74,7 @@ public class HourLogController {
 
         ApiResponse<HourLogResponse> response = ApiResponse.<HourLogResponse>builder()
                 .success(true)
-                .message("Registro de horas obtenido correctamente")
+                .message("Hour log retrieved successfully")
                 .data(hourLog)
                 .timestamp(LocalDateTime.now())
                 .build();
@@ -93,7 +93,7 @@ public class HourLogController {
 
         ApiResponse<PageResponse<HourLogResponse>> response = ApiResponse.<PageResponse<HourLogResponse>>builder()
                 .success(true)
-                .message("Registros de horas del mecánico obtenidos correctamente")
+                .message("Mechanic hour logs retrieved successfully")
                 .data(hourLogs)
                 .timestamp(LocalDateTime.now())
                 .build();
@@ -112,7 +112,7 @@ public class HourLogController {
 
         ApiResponse<HourLogResponse> response = ApiResponse.<HourLogResponse>builder()
                 .success(true)
-                .message("Registro de horas actualizado correctamente")
+                .message("Hour log updated successfully")
                 .data(hourLog)
                 .timestamp(LocalDateTime.now())
                 .build();
@@ -130,7 +130,7 @@ public class HourLogController {
 
         ApiResponse<Void> response = ApiResponse.<Void>builder()
                 .success(true)
-                .message("Registro de horas eliminado correctamente")
+                .message("Hour log deleted successfully")
                 .data(null)
                 .timestamp(LocalDateTime.now())
                 .build();

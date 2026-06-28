@@ -2,6 +2,7 @@ package com.grupo9.auto_repair_shop.service.auth;
 
 import com.grupo9.auto_repair_shop.dto.request.auth.ChangePasswordRequest;
 import com.grupo9.auto_repair_shop.dto.request.auth.LoginRequest;
+import com.grupo9.auto_repair_shop.dto.request.auth.RefreshTokenRequest;
 import com.grupo9.auto_repair_shop.dto.request.auth.RegisterRequest;
 import com.grupo9.auto_repair_shop.dto.response.auth.AuthUserResponse;
 import com.grupo9.auto_repair_shop.dto.response.auth.LoginResponse;
@@ -37,7 +38,7 @@ public class AuthServiceImpl implements AuthService {
     public AuthUserResponse register(RegisterRequest request) {
 
         if (userRepository.existsByEmail(request.getEmail())) {
-            throw new ConflictException("Ya existe un usuario con ese email");
+            throw new ConflictException("Email is already asigned to another user");
         }
 
         User user = User.builder()
@@ -58,29 +59,38 @@ public class AuthServiceImpl implements AuthService {
     public LoginResponse login(LoginRequest request) {
 
         User user = userRepository.findByEmail(request.getEmail())
-                .orElseThrow(() -> new UnauthorizedException("Credenciales inválidas"));
+                .orElseThrow(() -> new UnauthorizedException("Invalid credentials"));
 
         if (!Boolean.TRUE.equals(user.getActive())) {
-            throw new UnauthorizedException("El usuario está desactivado");
+            throw new UnauthorizedException("User deactivated");
         }
 
         if (!passwordEncoder.matches(request.getPassword(), user.getPasswordHash())) {
-            throw new UnauthorizedException("Credenciales inválidas");
+            throw new UnauthorizedException("Invalid credentials");
         }
 
-        String token = jwtService.generateToken(user.getEmail());
+        String accessToken = jwtService.generateAccessToken(user);
+        String refreshToken = jwtService.generateRefreshToken(user);
 
         return LoginResponse.builder()
-                .accessToken(token)
+                .accessToken(accessToken)
+                .refreshToken(refreshToken)
                 .tokenType("Bearer")
+                .expiresIn(jwtService.getAccessExpiration())
                 .user(authMapper.toAuthUserResponse(user))
                 .build();
     }
 
     @Override
     public void logout() {
-        // JWT es stateless.
-        // El frontend o Postman debe eliminar el token localmente.
+
+        User user = getAuthenticatedUser();
+
+        Long currentVersion = user.getTokenVersion() == null ? 0L : user.getTokenVersion();
+
+        user.setTokenVersion(currentVersion + 1);
+
+        userRepository.save(user);
     }
 
     @Override
@@ -89,30 +99,83 @@ public class AuthServiceImpl implements AuthService {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
         if (authentication == null || authentication.getName() == null) {
-            throw new UnauthorizedException("Usuario no autenticado");
+            throw new UnauthorizedException("Not autenticated user");
         }
 
         String email = authentication.getName();
 
         User user = userRepository.findByEmail(email)
-                .orElseThrow(() -> new UnauthorizedException("Usuario no autenticado"));
+                .orElseThrow(() -> new UnauthorizedException("Not autenticated user"));
 
         if (!Boolean.TRUE.equals(user.getActive())) {
-            throw new UnauthorizedException("El usuario está desactivado");
+            throw new UnauthorizedException("Deactivated user");
         }
 
         if (!passwordEncoder.matches(request.getOldPassword(), user.getPasswordHash())) {
-            throw new UnauthorizedException("La contraseña actual es incorrecta");
+            throw new UnauthorizedException("wrong password");
         }
 
         if (passwordEncoder.matches(request.getNewPassword(), user.getPasswordHash())) {
-            throw new BusinessRuleException("La nueva contraseña no puede ser igual a la actual");
+            throw new BusinessRuleException("The new password cannot be the same as the previous one");
         }
 
         user.setPasswordHash(passwordEncoder.encode(request.getNewPassword()));
 
+        Long currentVersion = user.getTokenVersion() == null ? 0L : user.getTokenVersion();
+        user.setTokenVersion(currentVersion + 1);
+
         User updatedUser = userRepository.save(user);
 
         return authMapper.toAuthUserResponse(updatedUser);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public LoginResponse refresh(RefreshTokenRequest request) {
+
+        String refreshToken = request.getRefreshToken();
+
+        if (!jwtService.isRefreshToken(refreshToken)) {
+            throw new UnauthorizedException("Invalid refresh token");
+        }
+
+        String email = jwtService.extractEmail(refreshToken);
+
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new UnauthorizedException("User not found"));
+
+        if (!Boolean.TRUE.equals(user.getActive())) {
+            throw new UnauthorizedException("User deactivated");
+        }
+
+        Long tokenVersion = jwtService.extractTokenVersion(refreshToken);
+        Long userTokenVersion = user.getTokenVersion() == null ? 0L : user.getTokenVersion();
+
+        if (tokenVersion == null || !userTokenVersion.equals(tokenVersion)) {
+            throw new UnauthorizedException("Invalid or expired refresh token");
+        }
+
+        return LoginResponse.builder()
+                .accessToken(jwtService.generateAccessToken(user))
+                .refreshToken(jwtService.generateRefreshToken(user))
+                .tokenType("Bearer")
+                .expiresIn(jwtService.getAccessExpiration())
+                .user(authMapper.toAuthUserResponse(user))
+                .build();
+    }
+
+
+    private User getAuthenticatedUser() {
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        if (authentication == null || authentication.getName() == null) {
+            throw new UnauthorizedException("Not authenticated user");
+        }
+
+        String email = authentication.getName();
+
+        return userRepository.findByEmail(email)
+                .orElseThrow(() -> new UnauthorizedException("Not authenticated user"));
     }
 }

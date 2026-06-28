@@ -29,7 +29,7 @@ public class InvoiceController {
         return ResponseEntity.status(HttpStatus.CREATED).body(
                 ApiResponse.<InvoiceResponse>builder()
                         .success(true)
-                        .message("Factura generada correctamente")
+                        .message("Invoice generated successfully")
                         .data(invoice)
                         .timestamp(LocalDateTime.now())
                         .build()
@@ -47,7 +47,7 @@ public class InvoiceController {
         return ResponseEntity.ok(
                 ApiResponse.<PageResponse<InvoiceResponse>>builder()
                         .success(true)
-                        .message("Facturas obtenidas correctamente")
+                        .message("Invoices retrieved successfully")
                         .data(invoices)
                         .timestamp(LocalDateTime.now())
                         .build()
@@ -64,7 +64,7 @@ public class InvoiceController {
         return ResponseEntity.ok(
                 ApiResponse.<InvoiceResponse>builder()
                         .success(true)
-                        .message("Factura obtenida correctamente")
+                        .message("Invoice retrieved successfully")
                         .data(invoice)
                         .timestamp(LocalDateTime.now())
                         .build()
@@ -81,7 +81,7 @@ public class InvoiceController {
         return ResponseEntity.ok(
                 ApiResponse.<InvoiceResponse>builder()
                         .success(true)
-                        .message("Factura obtenida correctamente")
+                        .message("Invoice retrieved successfully")
                         .data(invoice)
                         .timestamp(LocalDateTime.now())
                         .build()
@@ -100,7 +100,7 @@ public class InvoiceController {
         return ResponseEntity.ok(
                 ApiResponse.<PageResponse<InvoiceResponse>>builder()
                         .success(true)
-                        .message("Facturas del cliente obtenidas correctamente")
+                        .message("Client invoices retrieved successfully")
                         .data(invoices)
                         .timestamp(LocalDateTime.now())
                         .build()
@@ -117,7 +117,7 @@ public class InvoiceController {
         return ResponseEntity.ok(
                 ApiResponse.<InvoiceResponse>builder()
                         .success(true)
-                        .message("Factura marcada como pagada correctamente")
+                        .message("Invoice marked as paid successfully")
                         .data(invoice)
                         .timestamp(LocalDateTime.now())
                         .build()
@@ -134,7 +134,7 @@ public class InvoiceController {
         return ResponseEntity.ok(
                 ApiResponse.<InvoiceResponse>builder()
                         .success(true)
-                        .message("Factura cancelada correctamente")
+                        .message("Invoice canceled successfully")
                         .data(invoice)
                         .timestamp(LocalDateTime.now())
                         .build()
