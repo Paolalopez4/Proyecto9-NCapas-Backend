@@ -1,6 +1,7 @@
 package com.grupo9.auto_repair_shop.service.client;
 
 import com.grupo9.auto_repair_shop.dto.request.client.ClientRequest;
+import com.grupo9.auto_repair_shop.dto.request.client.UpdateClientRequest;
 import com.grupo9.auto_repair_shop.dto.response.client.ClientResponse;
 import com.grupo9.auto_repair_shop.dto.response.common.PageResponse;
 import java.util.UUID;
@@ -13,5 +14,7 @@ public interface ClientService {
 
     PageResponse<ClientResponse> findAll(int page, int size);
 
-    ClientResponse update(UUID id, ClientRequest request);
+    ClientResponse update(UUID id, UpdateClientRequest request);
+
+    void delete(UUID id);
 }

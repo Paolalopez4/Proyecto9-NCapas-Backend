@@ -1,6 +1,7 @@
 package com.grupo9.auto_repair_shop.mapper.client;
 
 import com.grupo9.auto_repair_shop.dto.request.client.ClientRequest;
+import com.grupo9.auto_repair_shop.dto.request.client.UpdateClientRequest;
 import com.grupo9.auto_repair_shop.dto.response.client.ClientResponse;
 import com.grupo9.auto_repair_shop.entity.client.Client;
 import org.mapstruct.Mapper;
@@ -17,4 +18,6 @@ public interface ClientMapper {
     ClientResponse toResponse(Client client);
 
     void updateEntity(ClientRequest request, @MappingTarget Client client);
+
+    void updateFromRequest(UpdateClientRequest request, @MappingTarget Client client);
 }
