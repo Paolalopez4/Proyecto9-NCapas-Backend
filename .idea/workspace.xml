@@ -4,16 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8763f010-f80e-4402-abdd-fe087b0928ee" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Proyecto9-NCapas-Backend.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/Auto_Repair_Shop.main.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-    </list>
+    <list default="true" id="8763f010-f80e-4402-abdd-fe087b0928ee" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -56,6 +47,65 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="NextEditCompletionFeaturesState">
+    <decayedCancelled>
+      <entry key="MS100" value="1.0000000000002403" />
+      <entry key="MS500" value="1.0029933983597807" />
+      <entry key="S2" value="1.2339058744578502" />
+      <entry key="S5" value="1.5592634682613973" />
+      <entry key="S10" value="1.7478391994683062" />
+      <entry key="S30" value="1.9076869159794105" />
+      <entry key="S60" value="1.952726044558146" />
+      <entry key="M2" value="1.9760768640625317" />
+      <entry key="M5" value="1.9903611775253895" />
+      <entry key="M10" value="1.9951689190913218" />
+      <entry key="M15" value="1.9967766805500557" />
+      <entry key="M30" value="1.9983870394541667" />
+      <entry key="H1" value="1.9991931942593317" />
+      <entry key="H2" value="1.9995965157298878" />
+      <entry key="H4" value="1.999798237510893" />
+      <entry key="D1" value="1.9999663700911818" />
+      <entry key="W1" value="1.9999951956580673" />
+    </decayedCancelled>
+    <decayedSelected>
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="0.0" />
+      <entry key="S2" value="0.0" />
+      <entry key="S5" value="0.0" />
+      <entry key="S10" value="0.0" />
+      <entry key="S30" value="0.0" />
+      <entry key="S60" value="0.0" />
+      <entry key="M2" value="0.0" />
+      <entry key="M5" value="0.0" />
+      <entry key="M10" value="0.0" />
+      <entry key="M15" value="0.0" />
+      <entry key="M30" value="0.0" />
+      <entry key="H1" value="0.0" />
+      <entry key="H2" value="0.0" />
+      <entry key="H4" value="0.0" />
+      <entry key="D1" value="0.0" />
+      <entry key="W1" value="0.0" />
+    </decayedSelected>
+    <decayedShown>
+      <entry key="MS100" value="0.47631899902202546" />
+      <entry key="MS500" value="0.8643870964921996" />
+      <entry key="S2" value="1.181233433834113" />
+      <entry key="S5" value="1.5286435537820302" />
+      <entry key="S10" value="1.7297453694773084" />
+      <entry key="S30" value="1.9008660292784976" />
+      <entry key="S60" value="1.949204128911131" />
+      <entry key="M2" value="1.9742869904436537" />
+      <entry key="M5" value="1.9896381501359277" />
+      <entry key="M10" value="1.994806214054569" />
+      <entry key="M15" value="1.9965346115777685" />
+      <entry key="M30" value="1.99826587194225" />
+      <entry key="H1" value="1.9991325772058963" />
+      <entry key="H2" value="1.9995661988736666" />
+      <entry key="H4" value="1.9997830769997644" />
+      <entry key="D1" value="1.9999638430499647" />
+      <entry key="W1" value="1.9999948346450918" />
+    </decayedShown>
   </component>
   <component name="ProjectColorInfo"><![CDATA[{
   "customColor": "",
@@ -112,7 +162,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1782620301431</updated>
-      <workItem from="1782620303281" duration="516000" />
+      <workItem from="1782620303281" duration="581000" />
     </task>
     <servers />
   </component>
