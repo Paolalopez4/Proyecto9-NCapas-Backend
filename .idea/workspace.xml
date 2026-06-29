@@ -4,31 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8763f010-f80e-4402-abdd-fe087b0928ee" name="Changes" comment="Merge pull request #25 from Paolalopez4/fix/workorder&#10;&#10;chore: clean extra .idea x2">
-      <changelist_data name="Paolalopez4" email="128640196+paolalopez4@users.noreply.github.com" automatic="false" />
+    <list default="true" id="8763f010-f80e-4402-abdd-fe087b0928ee" name="Changes" comment="jwt y mensajes en ingles">
+      <change afterPath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/resources/createAdmin.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/controller/auth/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/controller/auth/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/controller/branch/BranchController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/controller/branch/BranchController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/controller/budget/BudgetController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/controller/budget/BudgetController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/controller/client/ClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/controller/client/ClientController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/controller/hourlog/HourLogController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/controller/hourlog/HourLogController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/controller/invoice/InvoiceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/controller/invoice/InvoiceController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/controller/notification/NotificationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/controller/notification/NotificationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/controller/user/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/controller/user/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/controller/warranty/WarrantyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/controller/warranty/WarrantyController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/dto/request/auth/RefreshTokenRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/dto/request/auth/RefreshTokenRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/dto/response/auth/LoginResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/dto/response/auth/LoginResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/entity/user/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/entity/user/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/security/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/security/JwtAuthenticationFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/security/JwtService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/security/JwtService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/security/UserDetailsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/security/UserDetailsServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/service/auth/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/service/auth/AuthService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/service/auth/AuthServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/service/auth/AuthServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/service/branch/BranchServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/service/branch/BranchServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/service/budget/BudgetServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/service/budget/BudgetServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/service/client/ClientServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/service/client/ClientServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/service/user/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/java/com/grupo9/auto_repair_shop/service/user/UserServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -177,29 +155,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Gradle.Build Auto_Repair_Shop.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "Spring Boot.AutoRepairShopApplication.executor": "Run",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "feat/jwt-update",
-    "junie.onboarding.icon.badge.shown": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/lopez/OneDrive/Documents/UCA/ciclo01-2026/ncapas/proyecto/repo/Proyecto9-NCapas-Backend",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "to.speed.mode.migration.done": "true",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Gradle.Build Auto_Repair_Shop.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;Spring Boot.AutoRepairShopApplication.executor&quot;: &quot;Run&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feat/jwt-update&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/lopez/OneDrive/Documents/UCA/ciclo01-2026/ncapas/proyecto/repo/Proyecto9-NCapas-Backend&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="AutoRepairShopApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <envs>
@@ -235,6 +213,15 @@
       <updated>1782620301431</updated>
       <workItem from="1782620303281" duration="581000" />
     </task>
+    <task id="LOCAL-00001" summary="jwt y mensajes en ingles">
+      <option name="closed" value="true" />
+      <created>1782683850737</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1782683850737</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -254,7 +241,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Mensajes traducidos a ingles" />
     <MESSAGE value="Merge pull request #25 from Paolalopez4/fix/workorder&#10;&#10;chore: clean extra .idea x2" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merge pull request #25 from Paolalopez4/fix/workorder&#10;&#10;chore: clean extra .idea x2" />
+    <MESSAGE value="jwt y mensajes en ingles" />
+    <option name="LAST_COMMIT_MESSAGE" value="jwt y mensajes en ingles" />
   </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>
