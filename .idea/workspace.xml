@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="8763f010-f80e-4402-abdd-fe087b0928ee" name="Changes" comment="jwt y mensajes en ingles">
+      <change afterPath="$PROJECT_DIR$/Auto_Repair_Shop/src/main/resources/createAdmin.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CopilotChats">
+    <option name="panelChat">
+      <chat>
+        <option name="activeSessionId" value="0b6c8875-9710-455d-8669-2a7dad608177" />
+        <option name="sessions">
+          <session>
+            <option name="chatType" value="PANEL" />
+            <option name="id" value="0b6c8875-9710-455d-8669-2a7dad608177" />
+            <option name="modeId" value="Ask" />
+            <option name="modelType" value="builtin_family" />
+            <option name="modelValue" value="auto" />
+            <option name="targetType" value="LOCAL" />
+          </session>
+        </option>
+        <option name="type" value="PANEL" />
+      </chat>
+    </option>
+  </component>
+  <component name="CopilotPersistence">
+    <persistenceIdMap>
+      <entry key="_C:/Users/lopez/OneDrive/Documents/UCA/ciclo01-2026/ncapas/proyecto/repo/Proyecto9-NCapas-Backend" value="3FkXzJV7mN4Fh5OjuOUPIWURYa3" />
+    </persistenceIdMap>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$/Auto_Repair_Shop">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Auto_Repair_Shop" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="Paolalopez4 &lt;128640196+paolalopez4@users.noreply.github.com&gt;" />
+      </list>
+    </option>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="traducciones" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;HenryMauricio2004&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Paolalopez4/Proyecto9-NCapas-Backend.git&quot;,
+    &quot;accountId&quot;: &quot;b25fac40-3dc2-4a1e-aafc-160592996bb2&quot;
+  }
+}</component>
+  <component name="NextEditCompletionFeaturesState">
+    <decayedCancelled>
+      <entry key="MS100" value="1.0000000000002403" />
+      <entry key="MS500" value="1.0029933983597807" />
+      <entry key="S2" value="1.2339058744578502" />
+      <entry key="S5" value="1.5592634682613973" />
+      <entry key="S10" value="1.7478391994683062" />
+      <entry key="S30" value="1.9076869159794105" />
+      <entry key="S60" value="1.952726044558146" />
+      <entry key="M2" value="1.9760768640625317" />
+      <entry key="M5" value="1.9903611775253895" />
+      <entry key="M10" value="1.9951689190913218" />
+      <entry key="M15" value="1.9967766805500557" />
+      <entry key="M30" value="1.9983870394541667" />
+      <entry key="H1" value="1.9991931942593317" />
+      <entry key="H2" value="1.9995965157298878" />
+      <entry key="H4" value="1.999798237510893" />
+      <entry key="D1" value="1.9999663700911818" />
+      <entry key="W1" value="1.9999951956580673" />
+    </decayedCancelled>
+    <decayedSelected>
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="0.0" />
+      <entry key="S2" value="0.0" />
+      <entry key="S5" value="0.0" />
+      <entry key="S10" value="0.0" />
+      <entry key="S30" value="0.0" />
+      <entry key="S60" value="0.0" />
+      <entry key="M2" value="0.0" />
+      <entry key="M5" value="0.0" />
+      <entry key="M10" value="0.0" />
+      <entry key="M15" value="0.0" />
+      <entry key="M30" value="0.0" />
+      <entry key="H1" value="0.0" />
+      <entry key="H2" value="0.0" />
+      <entry key="H4" value="0.0" />
+      <entry key="D1" value="0.0" />
+      <entry key="W1" value="0.0" />
+    </decayedSelected>
+    <decayedShown>
+      <entry key="MS100" value="0.47631899902202546" />
+      <entry key="MS500" value="0.8643870964921996" />
+      <entry key="S2" value="1.181233433834113" />
+      <entry key="S5" value="1.5286435537820302" />
+      <entry key="S10" value="1.7297453694773084" />
+      <entry key="S30" value="1.9008660292784976" />
+      <entry key="S60" value="1.949204128911131" />
+      <entry key="M2" value="1.9742869904436537" />
+      <entry key="M5" value="1.9896381501359277" />
+      <entry key="M10" value="1.994806214054569" />
+      <entry key="M15" value="1.9965346115777685" />
+      <entry key="M30" value="1.99826587194225" />
+      <entry key="H1" value="1.9991325772058963" />
+      <entry key="H2" value="1.9995661988736666" />
+      <entry key="H4" value="1.9997830769997644" />
+      <entry key="D1" value="1.9999638430499647" />
+      <entry key="W1" value="1.9999948346450918" />
+    </decayedShown>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="3FkXzJV7mN4Fh5OjuOUPIWURYa3" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Gradle.Build Auto_Repair_Shop.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;Spring Boot.AutoRepairShopApplication.executor&quot;: &quot;Run&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feat/jwt-update&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/lopez/OneDrive/Documents/UCA/ciclo01-2026/ncapas/proyecto/repo/Proyecto9-NCapas-Backend&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RunManager">
+    <configuration name="AutoRepairShopApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <envs>
+        <env name="DB_PASSWORD" value="Uvv877aqCD" />
+        <env name="DB_URL" value="jdbc:postgresql://localhost:5432/taller" />
+        <env name="DB_USERNAME" value="postgres" />
+        <env name="JWT_EXPIRATION_MS" value="3600000" />
+        <env name="JWT_REFRESH_EXPIRATION_MS" value="604800000" />
+        <env name="JWT_SECRET" value="clave_super_secreta_para_jwt_de_al_menos_32_chars" />
+      </envs>
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="Auto_Repair_Shop.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.grupo9.auto_repair_shop.AutoRepairShopApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-30f59d01ecdd-37e91769500f-intellij.indexing.shared.core-IU-261.24374.151" />
+        <option value="bundled-js-predefined-d6986cc7102b-31caf2ab9e3c-JavaScript-IU-261.24374.151" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8763f010-f80e-4402-abdd-fe087b0928ee" name="Changes" comment="" />
+      <created>1782620301431</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1782620301431</updated>
+      <workItem from="1782620303281" duration="581000" />
+    </task>
+    <task id="LOCAL-00001" summary="jwt y mensajes en ingles">
+      <option name="closed" value="true" />
+      <created>1782683850737</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1782683850737</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Mensajes traducidos a ingles" />
+    <MESSAGE value="Merge pull request #25 from Paolalopez4/fix/workorder&#10;&#10;chore: clean extra .idea x2" />
+    <MESSAGE value="jwt y mensajes en ingles" />
+    <option name="LAST_COMMIT_MESSAGE" value="jwt y mensajes en ingles" />
+  </component>
+  <component name="github-copilot-workspace">
+    <instructionFileLocations>
+      <option value=".github/instructions" />
+    </instructionFileLocations>
+    <promptFileLocations>
+      <option value=".github/prompts" />
+    </promptFileLocations>
+  </component>
+</project>
