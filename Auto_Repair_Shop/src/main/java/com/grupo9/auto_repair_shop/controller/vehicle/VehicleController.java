@@ -4,9 +4,7 @@ import com.grupo9.auto_repair_shop.dto.request.vehicle.UpdateVehicleRequest;
 import com.grupo9.auto_repair_shop.dto.request.vehicle.VehicleRequest;
 import com.grupo9.auto_repair_shop.dto.response.common.ApiResponse;
 import com.grupo9.auto_repair_shop.dto.response.common.PageResponse;
-import com.grupo9.auto_repair_shop.dto.response.repairhistory.RepairHistoryResponse;
 import com.grupo9.auto_repair_shop.dto.response.vehicle.VehicleResponse;
-import com.grupo9.auto_repair_shop.service.repairhistory.RepairHistoryService;
 import com.grupo9.auto_repair_shop.service.vehicle.VehicleService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +14,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -24,7 +21,6 @@ import java.util.UUID;
 public class VehicleController {
 
     private final VehicleService vehicleService;
-    private final RepairHistoryService repairHistoryService;
 
     @PreAuthorize("hasAnyRole('ADMIN', 'CLIENT')")
     @PostMapping("/api/vehicles")
@@ -92,23 +88,6 @@ public class VehicleController {
                         .success(true)
                         .message("Client's vehicles retrieved successfully.")
                         .data(result)
-                        .timestamp(LocalDateTime.now())
-                        .build()
-        );
-    }
-
-    @PreAuthorize("hasAnyRole('ADMIN', 'MECHANIC', 'CLIENT')")
-    @GetMapping("/api/vehicles/{id}/repair-history")
-    public ResponseEntity<ApiResponse<List<RepairHistoryResponse>>> getRepairHistory(
-            @PathVariable UUID id) {
-
-        List<RepairHistoryResponse> history = repairHistoryService.findByVehicleId(id);
-
-        return ResponseEntity.ok(
-                ApiResponse.<List<RepairHistoryResponse>>builder()
-                        .success(true)
-                        .message("Vehicle repair history retrieved successfully.")
-                        .data(history)
                         .timestamp(LocalDateTime.now())
                         .build()
         );
