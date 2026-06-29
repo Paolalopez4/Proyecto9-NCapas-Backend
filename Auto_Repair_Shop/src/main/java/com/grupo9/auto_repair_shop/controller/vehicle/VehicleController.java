@@ -4,7 +4,9 @@ import com.grupo9.auto_repair_shop.dto.request.vehicle.UpdateVehicleRequest;
 import com.grupo9.auto_repair_shop.dto.request.vehicle.VehicleRequest;
 import com.grupo9.auto_repair_shop.dto.response.common.ApiResponse;
 import com.grupo9.auto_repair_shop.dto.response.common.PageResponse;
+import com.grupo9.auto_repair_shop.dto.response.repairhistory.RepairHistoryResponse;
 import com.grupo9.auto_repair_shop.dto.response.vehicle.VehicleResponse;
+import com.grupo9.auto_repair_shop.service.repairhistory.RepairHistoryService;
 import com.grupo9.auto_repair_shop.service.vehicle.VehicleService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -14,68 +16,70 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/vehicles")
 @RequiredArgsConstructor
 public class VehicleController {
 
     private final VehicleService vehicleService;
+    private final RepairHistoryService repairHistoryService;
 
     @PreAuthorize("hasAnyRole('ADMIN', 'CLIENT')")
-    @PostMapping
+    @PostMapping("/api/vehicles")
     public ResponseEntity<ApiResponse<VehicleResponse>> create(
             @Valid @RequestBody VehicleRequest request) {
 
         VehicleResponse created = vehicleService.create(request);
 
-        ApiResponse<VehicleResponse> body = ApiResponse.<VehicleResponse>builder()
-                .success(true)
-                .message("Vehicle registered successfully.")
-                .data(created)
-                .timestamp(LocalDateTime.now())
-                .build();
-
-        return ResponseEntity.status(HttpStatus.CREATED).body(body);
+        return ResponseEntity.status(HttpStatus.CREATED).body(
+                ApiResponse.<VehicleResponse>builder()
+                        .success(true)
+                        .message("Vehicle registered successfully.")
+                        .data(created)
+                        .timestamp(LocalDateTime.now())
+                        .build()
+        );
     }
 
     @PreAuthorize("hasAnyRole('ADMIN', 'MECHANIC', 'CLIENT')")
-    @GetMapping("/{id}")
-    public ResponseEntity<ApiResponse<VehicleResponse>> getById(@PathVariable UUID id) {
+    @GetMapping("/api/vehicles/{id}")
+    public ResponseEntity<ApiResponse<VehicleResponse>> getById(
+            @PathVariable UUID id) {
 
         VehicleResponse found = vehicleService.findById(id);
 
-        ApiResponse<VehicleResponse> body = ApiResponse.<VehicleResponse>builder()
-                .success(true)
-                .message("Vehicle retrieved successfully.")
-                .data(found)
-                .timestamp(LocalDateTime.now())
-                .build();
-
-        return ResponseEntity.ok(body);
+        return ResponseEntity.ok(
+                ApiResponse.<VehicleResponse>builder()
+                        .success(true)
+                        .message("Vehicle retrieved successfully.")
+                        .data(found)
+                        .timestamp(LocalDateTime.now())
+                        .build()
+        );
     }
 
     @PreAuthorize("hasAnyRole('ADMIN', 'MECHANIC')")
-    @GetMapping
+    @GetMapping("/api/vehicles")
     public ResponseEntity<ApiResponse<PageResponse<VehicleResponse>>> getAll(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size) {
 
         PageResponse<VehicleResponse> result = vehicleService.findAll(page, size);
 
-        ApiResponse<PageResponse<VehicleResponse>> body = ApiResponse.<PageResponse<VehicleResponse>>builder()
-                .success(true)
-                .message("Vehicles retrieved successfully.")
-                .data(result)
-                .timestamp(LocalDateTime.now())
-                .build();
-
-        return ResponseEntity.ok(body);
+        return ResponseEntity.ok(
+                ApiResponse.<PageResponse<VehicleResponse>>builder()
+                        .success(true)
+                        .message("Vehicles retrieved successfully.")
+                        .data(result)
+                        .timestamp(LocalDateTime.now())
+                        .build()
+        );
     }
 
     @PreAuthorize("hasAnyRole('ADMIN', 'MECHANIC', 'CLIENT')")
-    @GetMapping("/by-client/{clientId}")
+    @GetMapping("/api/clients/{clientId}/vehicles")
     public ResponseEntity<ApiResponse<PageResponse<VehicleResponse>>> getByClientId(
             @PathVariable UUID clientId,
             @RequestParam(defaultValue = "0") int page,
@@ -83,48 +87,65 @@ public class VehicleController {
 
         PageResponse<VehicleResponse> result = vehicleService.findByClientId(clientId, page, size);
 
-        ApiResponse<PageResponse<VehicleResponse>> body = ApiResponse.<PageResponse<VehicleResponse>>builder()
-                .success(true)
-                .message("Client's vehicles retrieved successfully.")
-                .data(result)
-                .timestamp(LocalDateTime.now())
-                .build();
+        return ResponseEntity.ok(
+                ApiResponse.<PageResponse<VehicleResponse>>builder()
+                        .success(true)
+                        .message("Client's vehicles retrieved successfully.")
+                        .data(result)
+                        .timestamp(LocalDateTime.now())
+                        .build()
+        );
+    }
 
-        return ResponseEntity.ok(body);
+    @PreAuthorize("hasAnyRole('ADMIN', 'MECHANIC', 'CLIENT')")
+    @GetMapping("/api/vehicles/{id}/repair-history")
+    public ResponseEntity<ApiResponse<List<RepairHistoryResponse>>> getRepairHistory(
+            @PathVariable UUID id) {
+
+        List<RepairHistoryResponse> history = repairHistoryService.findByVehicleId(id);
+
+        return ResponseEntity.ok(
+                ApiResponse.<List<RepairHistoryResponse>>builder()
+                        .success(true)
+                        .message("Vehicle repair history retrieved successfully.")
+                        .data(history)
+                        .timestamp(LocalDateTime.now())
+                        .build()
+        );
     }
 
     @PreAuthorize("hasAnyRole('ADMIN', 'CLIENT')")
-    @PutMapping("/{id}")
+    @PutMapping("/api/vehicles/{id}")
     public ResponseEntity<ApiResponse<VehicleResponse>> update(
             @PathVariable UUID id,
             @Valid @RequestBody UpdateVehicleRequest request) {
 
         VehicleResponse updated = vehicleService.update(id, request);
 
-        ApiResponse<VehicleResponse> body = ApiResponse.<VehicleResponse>builder()
-                .success(true)
-                .message("Vehicle updated successfully.")
-                .data(updated)
-                .timestamp(LocalDateTime.now())
-                .build();
-
-        return ResponseEntity.ok(body);
+        return ResponseEntity.ok(
+                ApiResponse.<VehicleResponse>builder()
+                        .success(true)
+                        .message("Vehicle updated successfully.")
+                        .data(updated)
+                        .timestamp(LocalDateTime.now())
+                        .build()
+        );
     }
 
     @PreAuthorize("hasRole('ADMIN')")
-    @DeleteMapping("/{id}")
-    public ResponseEntity<ApiResponse<Void>> delete(@PathVariable UUID id) {
+    @DeleteMapping("/api/vehicles/{id}")
+    public ResponseEntity<ApiResponse<Void>> delete(
+            @PathVariable UUID id) {
 
         vehicleService.delete(id);
 
-        ApiResponse<Void> body = ApiResponse.<Void>builder()
-                .success(true)
-                .message("Vehicle deleted successfully.")
-                .data(null)
-                .timestamp(LocalDateTime.now())
-                .build();
-
-        return ResponseEntity.ok(body);
+        return ResponseEntity.ok(
+                ApiResponse.<Void>builder()
+                        .success(true)
+                        .message("Vehicle deleted successfully.")
+                        .data(null)
+                        .timestamp(LocalDateTime.now())
+                        .build()
+        );
     }
-
 }
