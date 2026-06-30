@@ -100,7 +100,7 @@ A partir de aquí, puedes hacer login con ese usuario (`POST /api/auth/login`) y
 
 ## 6. Probar la API
 
-El proyecto incluye una colección de Postman (`Auto_Repair_Shop_API_postman_collection.json`) con todos los endpoints organizados por dominio, lista para importar.
+El proyecto incluye una colección de Postman (`Auto_Repair_Shop_API_postman_collection.json`) que se encuentra en moodle en el apartado donde se envio el repositorio con todos los endpoints organizados por dominio, lista para importar.
 
 1. Abre Postman → Import → selecciona el archivo `.json`
 2. Configura una variable de entorno `baseUrl` con valor `http://localhost:8000`
